@@ -14,4 +14,5 @@ public class User {
     private String password;
     private List<Role> roles;
     private Date birthday;
+    private String image;
 }
