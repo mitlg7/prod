@@ -7,12 +7,10 @@ import java.util.List;
 
 @Data
 public class User {
-    private String name;
-    private String lastName;
-    private String phone;
+    private Long Id;
+    private String login;
     private String email;
     private String password;
     private List<Role> roles;
-    private Date birthday;
-    private String image;
+
 }

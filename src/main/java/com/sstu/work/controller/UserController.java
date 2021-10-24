@@ -25,8 +25,8 @@ public class UserController {
     }
 
     @GetMapping
-    public String getUser(@AuthenticationPrincipal User user, Model model){
-        return null;
+    public String getUser( Model model){
+        return "index";
     }
 
     @GetMapping("/{id}")

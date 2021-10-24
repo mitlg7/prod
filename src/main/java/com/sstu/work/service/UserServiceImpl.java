@@ -50,7 +50,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean downToUserByProducerId(String id) {
+    public boolean downToUserByUserId(String id) {
         return false;
+    }
+
+    @Override
+    public List<User> getAllProoducers() {
+        return null;
     }
 }
