@@ -5,13 +5,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public enum Role {
-    ADMIN("Администратор"),
-    USER("Пользователь"),
-    PRODUCER("Поставщик");
-    String role;
-    Role(String role){
-        this.role = role;
-    }
-
+public class Role {
+    private int id;
+    private String type;
 }

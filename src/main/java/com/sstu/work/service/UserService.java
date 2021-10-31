@@ -24,7 +24,7 @@ public interface UserService {
 
     boolean downToUserByUserId(String id);
 
-    List<User> getAllProoducers();
+    List<User> getAllProducers();
 
 
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Data
 public class UserInfo {
-    private Long userId;
+    private Long id;
     private String name;
     private String lastName;
     private String phone;

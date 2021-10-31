@@ -1,7 +1,6 @@
 package com.sstu.work.service;
 
 import com.sstu.work.model.Product;
-import com.sstu.work.model.ProductType;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
