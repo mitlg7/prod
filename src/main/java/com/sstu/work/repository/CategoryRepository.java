@@ -28,11 +28,11 @@ public class CategoryRepository {
     }
 
     public void addCategory(String type) {
-        jdbc.update("call add_category"); // TODO check
+        jdbc.update("call create_category(?)", type);
     }
 
     public void removeCategory(String id) {
-        jdbc.update("call remove_category"); // TODO check
+        jdbc.update("call remove_category(?)", id);
     }
 
 }

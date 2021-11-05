@@ -3,7 +3,6 @@ package com.sstu.work.repository;
 import com.sstu.work.model.Comment;
 import com.sstu.work.model.utils.CommentRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -29,12 +28,18 @@ public class CommentRepository {
         this.jdbc = jdbc;
     }
 
-    public List<Comment> getAllCommentsByItemId(Long id){
+    public List<Comment> getAllCommentsByItemId(Long id) {
         String sql = "select * from comment where item_id = " + id;
         return jdbc.query(sql, mapper);
     }
 
-    public void createComment(CommentRequest comment){
-        //todo
+    public void createComment(CommentRequest comment, Long item_id) {
+        jdbc.update("call create_comment(?,?,?,?)",
+                comment.getAuthorId(),
+                comment.getDate(),
+                comment.getMessage(),
+                item_id
+        );
+
     }
 }

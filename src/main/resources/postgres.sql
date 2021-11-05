@@ -158,7 +158,6 @@ BEGIN
 END;
 $$;
 
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 CREATE PROCEDURE CREATE_PRODUCT(
     _USER_ID integer,
@@ -185,7 +184,6 @@ BEGIN
 END;
 $$;
 
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 CREATE PROCEDURE CREATE_ITEM(
     _NAME varchar,
@@ -214,9 +212,8 @@ begin
 end;
 $$;
 
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-create procedure create_comment(_DATE date, _USER_ID integer, _MESSAGE varchar, _ITEM_ID integer)
+create procedure create_comment(_USER_ID integer,_DATE date, _MESSAGE varchar, _ITEM_ID integer)
     language plpgsql
 as
 $$
@@ -237,7 +234,6 @@ begin
 end;
 $$;
 
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 create procedure create_category(_type varchar)
     language plpgsql
@@ -253,11 +249,9 @@ create procedure remove_category(_category_id integer)
     language plpgsql
 as
 $$
-    begin
-        delete
-        from comment
-        where id = _category_id;
-    end;
+begin
+    delete
+    from comment
+    where id = _category_id;
+end;
 $$;
-
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
