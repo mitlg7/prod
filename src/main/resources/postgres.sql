@@ -100,6 +100,16 @@ values ('moder', 'moder', (select id from role where type = 'MODER'));
 insert into users (login, password, role_id)
 values ('user', 'user', (select id from role where type = 'USER'));
 
+INSERT INTO category (type)
+values ('Металл');
+INSERT INTO category (type)
+values ('Дерево');
+INSERT INTO category (type)
+values ('Камень');
+INSERT INTO category (type)
+values ('Пластик');
+
+
 
 CREATE PROCEDURE CREATE_USER(_LOGIN varchar, _PASSWORD varchar, _EMAIL varchar)
     LANGUAGE plpgsql
