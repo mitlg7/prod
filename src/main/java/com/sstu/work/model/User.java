@@ -1,13 +1,12 @@
 package com.sstu.work.model;
 
 import lombok.Data;
-
-import java.util.Date;
-import java.util.List;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class User {
-    private Long Id;
+    private int Id;
     private String login;
     private String email;
     private String password;

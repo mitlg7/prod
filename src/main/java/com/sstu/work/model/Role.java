@@ -1,10 +1,13 @@
 package com.sstu.work.model;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
-@Getter
-@ToString
+@Data
+@Accessors(chain = true)
 public class Role {
     private int id;
     private String type;
