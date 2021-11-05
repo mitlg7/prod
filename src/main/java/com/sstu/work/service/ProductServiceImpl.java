@@ -1,5 +1,6 @@
 package com.sstu.work.service;
 
+import com.sstu.work.model.Category;
 import com.sstu.work.model.Product;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class ProductServiceImpl implements  ProductService{
     }
 
     @Override
-    public List<Product> getProductsByType(ProductType productType) {
+    public List<Product> getProductsByType(Category category) {
         return null;
     }
 

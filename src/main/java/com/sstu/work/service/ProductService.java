@@ -1,5 +1,6 @@
 package com.sstu.work.service;
 
+import com.sstu.work.model.Category;
 import com.sstu.work.model.Product;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface ProductService {
 
     List<Product> getAllProducts();
 
-    List<Product> getProductsByType(ProductType productType);
+    List<Product> getProductsByType(Category category);
 
     Product createProduct(Product product);
 

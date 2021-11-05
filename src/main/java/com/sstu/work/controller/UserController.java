@@ -2,6 +2,7 @@ package com.sstu.work.controller;
 
 import com.sstu.work.model.User;
 import com.sstu.work.model.utils.UserUpdateRequest;
+import com.sstu.work.repository.CategoryRepository;
 import com.sstu.work.service.ProductService;
 import com.sstu.work.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UserController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
     @PostMapping("/update")
     public String userUpdate(@AuthenticationPrincipal User user, @RequestBody UserUpdateRequest updateRequest){
         return null;
@@ -26,6 +30,7 @@ public class UserController {
 
     @GetMapping
     public String getUser( Model model){
+        System.out.println(categoryRepository.allCategories());
         return "index";
     }
 
