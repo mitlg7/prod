@@ -54,7 +54,7 @@ create table product
     image           varchar(512)  not null,
     description     varchar(1024) not null,
     date            date,
-    price           decimal       not null,
+    price           varchar       not null,
     category_id     integer,
     sub_category_id integer,
     foreign key (user_id) references users (id),
@@ -110,19 +110,43 @@ INSERT INTO category (type)
 values ('Пластик');
 
 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-CREATE PROCEDURE CREATE_USER(_LOGIN varchar, _PASSWORD varchar, _EMAIL varchar)
+CREATE PROCEDURE CREATE_USER(_login varchar, _password varchar, _email varchar)
     LANGUAGE plpgsql
 AS
 $$
 BEGIN
-        INSERT INTO users(LOGIN, PASSWORD, EMAIL, ROLE_ID)
-        VALUES (_LOGIN, _PASSWORD, _EMAIL, (SELECT ID FROM role WHERE type = 'USER'));
+    INSERT INTO users(LOGIN, PASSWORD, EMAIL, ROLE_ID)
+    VALUES (_login, _password, _email, (SELECT ID FROM role WHERE type = 'USER'));
     COMMIT;
 end;
 $$;
 
-CREATE PROCEDURE FIND_USER(_LOGIN varchar)
+CREATE PROCEDURE USER_GET(in _id int)
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    select u.id, u.login, u.password, r.type as role
+    from users u
+             join role r on r.id = u.role_id
+    where u.id = _id;
+END;
+$$;
+
+
+CREATE PROCEDURE REMOVE_USER(_login varchar)
+    LANGUAGE plpgsql
+as
+$$
+BEGIN
+    delete from users where login = _login;
+END;
+$$;
+
+
+CREATE PROCEDURE FIND_USER(_login varchar)
     LANGUAGE plpgsql
 AS
 $$
@@ -130,22 +154,110 @@ BEGIN
     SELECT u.id, u.login, u.email, r.type
     FROM users u
              join role r on u.role_id = r.id
-    where u.login = _LOGIN;
+    where u.login = _login;
 END;
 $$;
 
-CREATE PROCEDURE ADD_PRODUCT(
-    _USER_ID varchar,
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+CREATE PROCEDURE CREATE_PRODUCT(
+    _USER_ID integer,
     _NAME varchar,
+    _DESCRIPTION varchar,
     _PRICE varchar,
-    _DATE date,
-    _CATEGORY varchar,
-    _SUB_CATEGORY varchar
+    _DATE date
 )
     LANGUAGE plpgsql
 AS
 $$
 BEGIN
+    insert into product (user_id, name, description, price, date)
+    values (_USER_ID, _NAME, _DESCRIPTION, _PRICE, _DATE);
+END;
+$$;
 
+CREATE PROCEDURE remove_product(_product_id integer)
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    delete from product where id = _product_id;
+END;
+$$;
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+CREATE PROCEDURE CREATE_ITEM(
+    _NAME varchar,
+    _IMAGE varchar,
+    _DATE date,
+    _DESCRIPTION varchar,
+    _USER_ID integer
+)
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    INSERT INTO item (name, image, date, description, user_id)
+    VALUES (_NAME, _IMAGE, _DATE, _DESCRIPTION, _USER_ID);
+END;
+$$;
+
+create procedure remove_item(_item_id integer)
+    language plpgsql
+as
+$$
+begin
+    delete
+    from item
+    where id = _item_id;
 end;
 $$;
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+create procedure create_comment(_DATE date, _USER_ID integer, _MESSAGE varchar, _ITEM_ID integer)
+    language plpgsql
+as
+$$
+begin
+    insert into comment (date, user_id, message, item_id)
+    values (_DATE, _USER_ID, _MESSAGE, _ITEM_ID);
+end;
+$$;
+
+create procedure remove_comment(_comment_id integer)
+    language plpgsql
+as
+$$
+begin
+    delete
+    from comment
+    where id = _comment_id;
+end;
+$$;
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+create procedure create_category(_type varchar)
+    language plpgsql
+as
+$$
+begin
+    insert into category (type)
+    values (_type);
+end;
+$$;
+
+create procedure remove_category(_category_id integer)
+    language plpgsql
+as
+$$
+    begin
+        delete
+        from comment
+        where id = _category_id;
+    end;
+$$;
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
