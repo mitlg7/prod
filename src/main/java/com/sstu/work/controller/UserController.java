@@ -34,6 +34,10 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("/registration")
+    public  String registration( Model model){
+        return "registration";
+    }
     @GetMapping("/{id}")
     public String getUserByID(@AuthenticationPrincipal User user, @PathVariable String id, Model model){
         return null;
