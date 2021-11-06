@@ -1,15 +1,15 @@
 package com.sstu.work.controller;
 
-import com.sstu.work.model.User;
 import com.sstu.work.model.utils.RegistrationRequest;
 import com.sstu.work.service.UserService;
+import org.apache.catalina.loader.ResourceEntry;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
@@ -17,14 +17,14 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/login")
-    public String login(@AuthenticationPrincipal User auth, Model model){
-        return null;
-    }
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
-    @PostMapping("/logout")
-    public String logout(){
-        return null;
+    @GetMapping("/login")
+    public String login(Model model){
+
+        System.out.println(passwordEncoder.encode("admin"));
+        return "login";
     }
 
     @PostMapping("/register")
@@ -32,4 +32,13 @@ public class LoginController {
         return null;
     }
 
+    @PostMapping("/registration")
+    public ResourceEntry registration(@RequestBody RegistrationRequest request) {
+        userService.createUser(request);
+        return null;
+    }
+    @GetMapping("/registration")
+    public String registration(Model model) {
+        return "registration";
+    }
 }

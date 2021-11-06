@@ -13,19 +13,11 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @PostMapping("/add")
-    public void addProduct(@RequestBody Product product) {
 
-    }
-
+    // FORMS
     @GetMapping("/{id}")
     public String getProduct(@PathVariable String id) {
         return "product";
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteProduct(@PathVariable String id) {
-        return null;
     }
 
     @GetMapping("/all")
@@ -37,5 +29,19 @@ public class ProductController {
         }
         return null;
     }
+    /////////////////////////////
+    @PostMapping("/add")
+    public void addProduct(@RequestBody Product product) {
+
+    }
+
+
+
+    @DeleteMapping("/{id}")
+    public String deleteProduct(@PathVariable String id) {
+        return null;
+    }
+
+
 
 }

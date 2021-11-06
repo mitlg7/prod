@@ -213,7 +213,7 @@ end;
 $$;
 
 
-create procedure create_comment(_USER_ID integer,_DATE date, _MESSAGE varchar, _ITEM_ID integer)
+create procedure create_comment(_USER_ID integer, _DATE date, _MESSAGE varchar, _ITEM_ID integer)
     language plpgsql
 as
 $$
@@ -256,11 +256,49 @@ begin
 end;
 $$;
 
-CREATE OR REPLACE FUNCTION fx()
-    RETURNS SETOF users AS $$
+CREATE OR REPLACE FUNCTION ALL_USERS()
+    RETURNS SETOF users AS
+$$
 BEGIN
-    RETURN QUERY SELECT * FROM users;
+    RETURN QUERY SELECT *
+                 FROM users;
 END
 $$ LANGUAGE plpgsql;
 
-SELECT * FROM fx();
+SELECT *
+from all_users();
+
+
+
+CREATE OR REPLACE FUNCTION ROLE_BY_TYPE(_TYPE varchar)
+    RETURNS
+        SETOF ROLE
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM role
+                 where type = _type;
+END
+$$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE FUNCTION ROLE_BY_ID(_id bigint)
+    RETURNS
+        SETOF ROLE
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM role
+                 where id = _id;
+END
+$$ LANGUAGE PLPGSQL;
+
+
+CREATE OR REPLACE FUNCTION USER_BY_LOGIN(_login varchar) RETURNS
+    SETOF users AS $$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM users where login = _login;
+END
+$$ LANGUAGE PLPGSQL;

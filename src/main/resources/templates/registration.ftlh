@@ -3,21 +3,24 @@
 
 <@component.skeleton title="Главная страница">
     <@bootstrap.navbar/>
-    <form class="container col-4 mt-5">
+    <form method="post" action="/user/registration" class="container col-4 mt-5">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <label for="login">Логин: </label>
+            <input name="login" minlength="5"  maxlength="20" type="text" class="form-control" id="login" placeholder="Логин">
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <label for="email">Почта: </label>
+            <input name="email" type="email"  class="form-control" id="email" placeholder="Емаил">
         </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        <div class="form-group">
+            <label for="password">Пароль: </label>
+            <input name="password" minlength="5"  maxlength="20" type="password" class="form-control" id="password" placeholder="Пароль">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="row">
+            <button type="submit" class="mx-auto col-8 btn btn-secondary mt-5 ">Регистрация</button>
+        </div>
+
     </form>
 
 

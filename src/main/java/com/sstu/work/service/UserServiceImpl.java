@@ -14,19 +14,25 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+
     @Override
     public User getUserByUsername(String username) {
-        return null;
+        return userRepository.getUserByLogin(username);
     }
 
     @Override
-    public User getUserById(String id) {
+    public User getUserById(Long id) {
         return null;
     }
 
     @Override
     public User createUser(RegistrationRequest request) {
-        return null;
+        User userCreate = new User().setEmail(request.getEmail())
+                .setLogin(request.getLogin())
+                .setPassword(request.getPassword());
+        userRepository.create(userCreate);
+
+        return userRepository.getUserByLogin(userCreate.getLogin());
     }
 
     @Override

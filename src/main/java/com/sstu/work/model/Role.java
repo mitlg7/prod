@@ -9,6 +9,6 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class Role {
-    private int id;
+    private Long id;
     private String type;
 }
