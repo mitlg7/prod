@@ -255,3 +255,12 @@ begin
     where id = _category_id;
 end;
 $$;
+
+CREATE OR REPLACE FUNCTION fx()
+    RETURNS SETOF users AS $$
+BEGIN
+    RETURN QUERY SELECT * FROM users;
+END
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM fx();
