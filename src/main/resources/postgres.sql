@@ -368,4 +368,18 @@ BEGIN
 END
 $$ LANGUAGE PLPGSQL;
 
+
+
+CREATE OR REPLACE PROCEDURE ADD_USER_INFO_TO_USER(_login varchar,  _info_id integer)
+AS
+$$
+BEGIN
+    UPDATE users
+    SET info_id = _info_id
+    WHERE login = _login;
+END
+$$ LANGUAGE plpgsql;
+
+
 select CREATE_USER_INFO('Миша', 'Кузмичев', '123122444', null, '2000-10-6') ;
+
