@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUsername(String username) {
-        return userRepository.getUserByLogin(username);
+        return  userRepository.getUserByLogin(username);
     }
 
     @Override
@@ -77,14 +78,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUserInfo(UserInfoRequest userInfoRequest, String login) {
-        User user = userRepository.getUserByLogin(login);
         UserInfo userInfo = new UserInfo()
-                .setBirthday(userInfoRequest.getBirthday())
+                .setBirthday(Date.valueOf(userInfoRequest.getBirthday()))
                 .setLastName(userInfoRequest.getLastname())
                 .setName(userInfoRequest.getName())
                 .setPhone(userInfoRequest.getPhone())
                 .setImage(saveImage(userInfoRequest.getImage()));
-        userInfoRepository.create(userInfo);
+
+        Long userInfoId = userInfoRepository.create(userInfo);
+        userRepository.addUserInfoIdToUser(login, userInfoId);
     }
 
     private String saveImage(MultipartFile file) {
@@ -92,7 +94,7 @@ public class UserServiceImpl implements UserService {
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
         }
-        String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
+        String resultFileName = UUID.randomUUID().toString().substring(1,32) + file.getOriginalFilename();
         try {
             file.transferTo(new File(uploadPath + "/" + resultFileName));
         } catch (Exception e) {
