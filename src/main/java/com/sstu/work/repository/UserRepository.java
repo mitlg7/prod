@@ -17,12 +17,16 @@ public class UserRepository {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    UserInfoRepository userInfoRepository;
+
 
     RowMapper<User> mapper = (rs, rowNum) -> new User().setId(rs.getLong("id"))
             .setLogin(rs.getString("login"))
             .setEmail(rs.getString("email"))
             .setPassword(rs.getString("password"))
-            .setRole(roleRepository.getById(rs.getLong("role_id")));
+            .setRole(roleRepository.getById(rs.getLong("role_id")))
+            .setInfo(userInfoRepository.getById(rs.getLong("info_id")));
 
     public UserRepository(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
@@ -86,5 +90,8 @@ public class UserRepository {
         jdbc.update("call delete_user(?)", login);
     }
 
+    public void addUserInfoIdToUser(String login, Long userInfoId) {
+        jdbc.update("call ADD_USER_INFO_TO_USER(?,?)", login, userInfoId);
+    }
 
 }

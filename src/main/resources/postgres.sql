@@ -383,7 +383,7 @@ $$ LANGUAGE PLPGSQL;
 
 
 
-CREATE OR REPLACE PROCEDURE ADD_USER_INFO_TO_USER(_login varchar,  _info_id integer)
+CREATE OR REPLACE PROCEDURE ADD_USER_INFO_TO_USER(_login varchar,  _info_id BIGINT)
 AS
 $$
 BEGIN
@@ -394,5 +394,29 @@ END
 $$ LANGUAGE plpgsql;
 
 
-select CREATE_USER_INFO('Миша', 'Кузмичев', '123122444', null, '2000-10-6') ;
+create function user_by_id(_id bigint) returns SETOF users
+    language plpgsql
+as
+$$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM users where id = _id;
+END
+$$;
+
+create function user_by_login(_login character varying) returns SETOF users
+    language plpgsql
+as
+$$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM users where login = _login;
+END
+$$;
+
+
+
+
+
+select * from CREATE_USER_INFO('aweq', 'qwe', 'asd', '6974118-dda0-4e08-9417-7b0bcf7e2.jpg', '2021-11-03') as "id";
 

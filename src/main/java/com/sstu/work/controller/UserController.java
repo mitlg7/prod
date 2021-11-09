@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 
@@ -30,13 +31,15 @@ public class UserController {
     @GetMapping
     public String user(Principal principal, Model model) {
         User user = userService.getUserByUsername(principal.getName());
+        if(user.getInfo()!= null)
+            model.addAttribute("userInfo", user.getInfo());
         model.addAttribute("user", user);
         return "user";
     }
 
 
 
-    @GetMapping("/user-info/")
+    @GetMapping("/user-info")
     public String AddUserInfoForm(Model model) {
         return "create-user-info";
     }
@@ -50,7 +53,7 @@ public class UserController {
     @PostMapping("/user-info")
     public String addUserInfo(Principal principal, UserInfoRequest userInfoRequest) {
         userService.addUserInfo(userInfoRequest, principal.getName());
-        return "ok";
+        return "redirect:/user";
     }
 
     @DeleteMapping("/{id}")

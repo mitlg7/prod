@@ -11,7 +11,6 @@ public class MainController {
 
     @GetMapping
     public String a(Principal user, Model model){
-        System.out.println(user.getName());
         return "index";
     }
 }

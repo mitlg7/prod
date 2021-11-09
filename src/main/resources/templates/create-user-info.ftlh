@@ -3,7 +3,7 @@
 
 <@component.skeleton title="Личная информация">
     <@bootstrap.navbar/>
-    <form class="container" method="post" action="user/user-info">
+    <form class="container" method="post" enctype="multipart/form-data">
         <div class="row g-3">
             <div class="col">
                 <label for="name" class="form-label">Имя</label>

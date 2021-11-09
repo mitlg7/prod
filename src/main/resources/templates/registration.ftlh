@@ -4,7 +4,6 @@
 <@component.skeleton title="Главная страница">
     <@bootstrap.navbar/>
     <form method="post" action="/user/registration" class="container col-4 mt-5">
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
         <div class="form-group">
             <label for="login">Логин: </label>
             <input name="login" minlength="5"  maxlength="20" type="text" class="form-control" id="login" placeholder="Логин">
