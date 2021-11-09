@@ -368,3 +368,4 @@ BEGIN
 END
 $$ LANGUAGE PLPGSQL;
 
+select CREATE_USER_INFO('Миша', 'Кузмичев', '123122444', null, '2000-10-6') ;
