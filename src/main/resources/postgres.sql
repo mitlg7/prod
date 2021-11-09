@@ -309,12 +309,25 @@ $$ LANGUAGE PLPGSQL;
 
 CREATE OR REPLACE FUNCTION USER_BY_ID(_id bigint)
     RETURNS
+
         SETOF users
 AS
 $$
 BEGIN
     RETURN QUERY SELECT *
                  FROM users
+                 where id = _id;
+END
+$$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE FUNCTION USER_INFO_BY_ID(_id bigint)
+    RETURNS
+        SETOF user_info
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM user_info
                  where id = _id;
 END
 $$ LANGUAGE PLPGSQL;

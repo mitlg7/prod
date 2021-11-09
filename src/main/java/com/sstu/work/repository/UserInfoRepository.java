@@ -1,6 +1,8 @@
 package com.sstu.work.repository;
 
+import com.sstu.work.model.User;
 import com.sstu.work.model.UserInfo;
+import com.sstu.work.model.utils.NotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -28,9 +30,11 @@ public class UserInfoRepository {
         //todo
     }
 
-    public UserInfo getById(Long id){
-        String sql = "select * from user_info where id = "+ id;
-        List<UserInfo> userInfoList = jdbc.query(sql,mapper);
-        return null;
+    public UserInfo getById(Long id) {
+        var userInfo = jdbc.query("select * from user_info_by_id(?)", mapper, id);
+        if (userInfo.isEmpty())
+            throw new NotFoundException("UserInfo with id " + id + " not found");
+        return userInfo.get(0);
     }
+
 }
