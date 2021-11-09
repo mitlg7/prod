@@ -17,6 +17,7 @@ public class UserRepository {
     @Autowired
     RoleRepository roleRepository;
 
+
     RowMapper<User> mapper = (rs, rowNum) -> new User().setId(rs.getLong("id"))
             .setLogin(rs.getString("login"))
             .setEmail(rs.getString("email"))
@@ -46,12 +47,10 @@ public class UserRepository {
     }
 
     public User getUserById(Long id) {
-//        String sql = "select * from users where id =" + id;
-//        User user = one(sql);
-//        if (user == null)
-//            throw new NotFoundException("User with id" + id + "not found");
-//        return user;
-        return new User();
+        var user = jdbc.query("select * from USER_BY_ID(?)", mapper, id);
+        if (user.isEmpty())
+            throw new NotFoundException("User with login" + id + "not found");
+        return user.get(0);
     }
 
     public List<User> getUsersByModerRole() {

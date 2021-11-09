@@ -24,6 +24,8 @@ public class LoginController {
     public String login(Model model){
 
         System.out.println(passwordEncoder.encode("admin"));
+        System.out.println(passwordEncoder.encode("moder"));
+        System.out.println(passwordEncoder.encode("user"));
         return "login";
     }
 
@@ -34,6 +36,7 @@ public class LoginController {
 
     @PostMapping("/registration")
     public ResourceEntry registration(@RequestBody RegistrationRequest request) {
+        request.setPassword(passwordEncoder.encode(request.getPassword()));
         userService.createUser(request);
         return null;
     }

@@ -2,6 +2,7 @@ package com.sstu.work.service;
 
 import com.sstu.work.model.User;
 import com.sstu.work.model.utils.RegistrationRequest;
+import com.sstu.work.model.utils.UserInfoRequest;
 import com.sstu.work.model.utils.UserUpdateRequest;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ public interface UserService {
 
     User getUserById(Long id);
 
-    User createUser(RegistrationRequest request);
+    void createUser(RegistrationRequest request);
 
     List<User> getAll();
 
@@ -25,6 +26,9 @@ public interface UserService {
     boolean downToUserByUserId(String id);
 
     List<User> getAllProducers();
+
+    void addUserInfo(UserInfoRequest userInfoRequest, String login);
+
 
 
 }

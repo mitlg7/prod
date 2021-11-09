@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -26,9 +28,9 @@ public class UserController {
 
     // FORMS
     @GetMapping
-    public String getUser(@AuthenticationPrincipal User user, Model model) {
-        // userService.getUserById(user.getId());
-        // model.addAttribute("user", user);
+    public String user(Principal principal, Model model) {
+        User user = userService.getUserByUsername(principal.getName());
+        model.addAttribute("user", user);
         return "user";
     }
 
@@ -46,8 +48,9 @@ public class UserController {
     //////////////////////////////
 
     @PostMapping("/user-info")
-    public String addUserInfo(UserInfoRequest userInfoRequest) {
-        return null;
+    public String addUserInfo(Principal principal, UserInfoRequest userInfoRequest) {
+        userService.addUserInfo(userInfoRequest, principal.getName());
+        return "ok";
     }
 
     @DeleteMapping("/{id}")

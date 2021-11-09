@@ -3,8 +3,7 @@
 
 <@component.skeleton title="Личная информация">
     <@bootstrap.navbar/>
-    <form class="container" method="post" action="">
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <form class="container" method="post" action="user/user-info">
         <div class="row g-3">
             <div class="col">
                 <label for="name" class="form-label">Имя</label>
@@ -30,7 +29,9 @@
             <label for="image" class="form-label">Фото профиля</label>
             <input name="image" id="image" type="file" accept="image" class="form-control" placeholder="Фото профиля">
         </div>
-
+        <div class="row">
+            <button type="submit" class="mx-auto col-8 btn btn-secondary mt-5 ">Сохранить</button>
+        </div>
     </form>
 
 

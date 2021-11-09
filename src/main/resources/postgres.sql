@@ -295,10 +295,76 @@ END
 $$ LANGUAGE PLPGSQL;
 
 
-CREATE OR REPLACE FUNCTION USER_BY_LOGIN(_login varchar) RETURNS
-    SETOF users AS $$
+CREATE OR REPLACE FUNCTION USER_BY_LOGIN(_login varchar)
+    RETURNS
+        SETOF users
+AS
+$$
 BEGIN
     RETURN QUERY SELECT *
-                 FROM users where login = _login;
+                 FROM users
+                 where login = _login;
 END
 $$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE FUNCTION USER_BY_ID(_id bigint)
+    RETURNS
+        SETOF users
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM users
+                 where id = _id;
+END
+$$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE FUNCTION PRODUCT_BY_ID(_id bigint)
+    RETURNS
+        SETOF product
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM product
+                 where id = _id;
+END
+$$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE FUNCTION ITEM_BY_ID(_id bigint)
+    RETURNS
+        SETOF item
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM item
+                 where id = _id;
+END
+$$ LANGUAGE PLPGSQL;
+
+
+CREATE OR REPLACE FUNCTION COMMENTS_BY_USER_ID(_id bigint)
+    RETURNS
+        SETOF comment
+AS
+$$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM comment
+                 where user_id = _id;
+END
+$$ LANGUAGE PLPGSQL;
+
+
+CREATE OR REPLACE function CREATE_USER_INFO(_name varchar, _lastname varchar, _phone varchar, _image varchar,
+                                            _birthday date)
+    returns setof bigint
+AS
+$$
+BEGIN
+    insert into user_info (name, lastName, phone, image, birthday) VALUES (_name, _lastname, _phone, _image, _birthday);
+    return query select currval('user_info_id_seq');
+END
+$$ LANGUAGE PLPGSQL;
+
