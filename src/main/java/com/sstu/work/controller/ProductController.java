@@ -1,10 +1,14 @@
 package com.sstu.work.controller;
 
 import com.sstu.work.model.Product;
+import com.sstu.work.model.utils.ProductRequest;
 import com.sstu.work.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/product")
@@ -13,6 +17,10 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    @GetMapping("/create")
+    public String addProduct(Model model) {
+        return "create-product";
+    }
 
     // FORMS
     @GetMapping("/{id}")
@@ -30,9 +38,10 @@ public class ProductController {
         return null;
     }
     /////////////////////////////
-    @PostMapping("/add")
-    public void addProduct(@RequestBody Product product) {
-
+    @PostMapping("/create")
+    public String addProduct(Principal principal, ProductRequest productRequest) {
+        productService.createProduct(principal.getName(), productRequest);
+        return "redirect:/";
     }
 
 

@@ -2,6 +2,7 @@ package com.sstu.work.service;
 
 import com.sstu.work.model.Category;
 import com.sstu.work.model.Product;
+import com.sstu.work.model.utils.ProductRequest;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface ProductService {
 
     List<Product> getProductsByType(Category category);
 
-    Product createProduct(Product product);
+    void createProduct(String login, ProductRequest productRequest);
 
     boolean removeById(String id);
 

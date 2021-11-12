@@ -23,7 +23,7 @@
                         <a class="nav-link text-white" href="/user">ЛК</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Склад</a>
+                        <a class="nav-link text-white" href="/product/create">Добавить продукт</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Склад</a>

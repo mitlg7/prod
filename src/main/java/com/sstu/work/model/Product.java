@@ -9,6 +9,7 @@ import java.util.Date;
 @Accessors(chain = true)
 public class Product {
     private Long id;
+    private Long userId;
     private String name;
     private String image;
     private String description;

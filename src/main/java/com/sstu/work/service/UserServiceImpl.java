@@ -7,6 +7,7 @@ import com.sstu.work.model.utils.UserInfoRequest;
 import com.sstu.work.model.utils.UserUpdateRequest;
 import com.sstu.work.repository.UserInfoRepository;
 import com.sstu.work.repository.UserRepository;
+import com.sstu.work.service.utils.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,10 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Value("${upload.path}")
-    private String uploadPath;
+
+    @Autowired
+    ImageService imageService;
+
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -83,24 +86,10 @@ public class UserServiceImpl implements UserService {
                 .setLastName(userInfoRequest.getLastname())
                 .setName(userInfoRequest.getName())
                 .setPhone(userInfoRequest.getPhone())
-                .setImage(saveImage(userInfoRequest.getImage()));
+                .setImage(imageService.saveImage(userInfoRequest.getImage()));
 
         Long userInfoId = userInfoRepository.create(userInfo);
         userRepository.addUserInfoIdToUser(login, userInfoId);
     }
 
-    private String saveImage(MultipartFile file) {
-        File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdir();
-        }
-        String resultFileName = UUID.randomUUID().toString().substring(1,32) + file.getOriginalFilename();
-        try {
-            file.transferTo(new File(uploadPath + "/" + resultFileName));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return resultFileName;
-    }
 }

@@ -14,6 +14,7 @@ public class ProductRepository {
     RowMapper<Product> mapper = (rs, rowNum) -> new Product()
             .setId(rs.getLong("id"))
             .setName(rs.getString("name"))
+            .setImage(rs.getString("image"))
             .setDate(rs.getDate("date"))
             .setDescription(rs.getString("description"))
             .setPrice(rs.getLong("price"));
@@ -33,6 +34,16 @@ public class ProductRepository {
 
         return jdbc.query(sql, mapper);
 
+    }
+
+    public void createProduct(Product product){
+        jdbc.update("call create_product(?,?,?,?,?,?)", mapper,
+                product.getUserId(),
+                product.getImage(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getDate().toString());
     }
 
 
