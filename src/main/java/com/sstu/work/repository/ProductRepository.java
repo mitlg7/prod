@@ -28,22 +28,22 @@ public class ProductRepository {
         return jdbc.query(sql, mapper);
     }
 
-    public List<Product> getProductByCategory(String type){
+    public List<Product> getProductByCategory(String type) {
         String sql = "select * from product where category_id = (" +
-                "select id from category where type ="+type+")";
+                "select id from category where type =" + type + ")";
 
         return jdbc.query(sql, mapper);
 
     }
 
-    public void createProduct(Product product){
-        jdbc.update("call create_product(?,?,?,?,?,?)", mapper,
-                product.getUserId(),
+    public void createProduct(Product product) {
+        jdbc.update("call create_product(?,?,?,?,?,?)",
+                product.getUserId().intValue(),
                 product.getImage(),
                 product.getName(),
                 product.getDescription(),
-                product.getPrice(),
-                product.getDate().toString());
+                product.getPrice().intValue(),
+                product.getDate());
     }
 
 
