@@ -14,10 +14,10 @@
                         <a class="nav-link text-white" href="/login">Логин</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/registration">рега</a>
+                        <a class="nav-link text-white" href="/registration">Регистрация</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/user/user-info">добавить юзер инфо</a>
+                        <a class="nav-link text-white" href="/user/user-info">Добавить информацию о user</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/user">ЛК</a>
