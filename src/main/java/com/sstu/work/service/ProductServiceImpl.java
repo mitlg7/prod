@@ -33,7 +33,7 @@ public class ProductServiceImpl implements  ProductService{
 
     @Override
     public List<Product> getAllProducts() {
-        return null;
+        return productRepository.getAll();
     }
 
     @Override
@@ -56,6 +56,8 @@ public class ProductServiceImpl implements  ProductService{
         productRepository.createProduct(product);
 
     }
+
+
 
 
     @Override

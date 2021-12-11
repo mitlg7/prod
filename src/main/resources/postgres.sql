@@ -416,3 +416,12 @@ $$;
 select *
 from CREATE_USER_INFO('aweq', 'qwe', 'asd', '6974118-dda0-4e08-9417-7b0bcf7e2.jpg', '2021-11-03') as "id";
 
+
+CREATE OR REPLACE FUNCTION ALL_PRODUCTS()
+    RETURNS SETOF product AS
+$$
+BEGIN
+    RETURN QUERY SELECT *
+                 FROM product;
+END
+$$ LANGUAGE plpgsql;

@@ -8,6 +8,9 @@
 
     <@bootstrap.navbar/>
     <form class="container col-8" method="post" action="sclad">
+        <div >
+
+        </div>
 
     </form>
 

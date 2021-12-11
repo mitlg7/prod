@@ -46,5 +46,8 @@ public class ProductRepository {
                 product.getDate());
     }
 
+    public List<Product> getAll(){
+        return jdbc.query("select * from all_products()", mapper );
+    }
 
 }
