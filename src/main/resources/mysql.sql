@@ -152,7 +152,7 @@ delete from product where id = _id;
 
 
 create procedure productById(_id int)
-select from product where id = _id;
+select * from product where id = _id;
 
 
 create procedure allProduct() SELECT * FROM product;

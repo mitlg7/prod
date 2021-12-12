@@ -4,30 +4,29 @@
 <@component.skeleton title="Главная страница">
     <@bootstrap.navbar/>
 
+    <div class="heading">
+        <h1 class="heading__title">Продукты, которые представлены на нашем сайте</h1>
+    </div>
 
-
-        <#list products as product>
-
-            <div class="main-container">
-                <div class="heading">
-                    <h1 class="heading__title">Продукты, которые представлены на нашем сайте</h1>
+    <div class="main-container">
+        <div class="cards">
+            <#list products as product>
+                <div class="card card-1">
+                    <div class="card__icon"><i class="fas fa-bolt"></i></div>
+                    <p class="card__exit"><i class="fas fa-times"></i></p>
+                    <h2 class="card__title">${product.name}</h2>
+                    <p>
+                    <h2 class="card__title">${product.description}</h2>
+                    </p>
+                    <p class="card__apply">
+                        <a class="card__link" href="#">Подробнее <i class="fas fa-arrow-right"></i></a>
+                    </p>
                 </div>
-                <div class="cards">
-                    <div class="card card-1">
-                        <div class="card__icon"><i class="fas fa-bolt"></i></div>
-                        <p class="card__exit"><i class="fas fa-times"></i></p>
-                        <h2 class="card__title">${product.name}</h2>
-                        <p>
-                            <h2 class="card__title">${product.description}</h2>
-                        </p>
-                        <p class="card__apply">
-                            <a class="card__link" href="#">Подробнее <i class="fas fa-arrow-right"></i></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            </#list>
+        </div>
+    </div>
 
-        </#list>
+
 
 
     <style>
