@@ -111,31 +111,8 @@ values ('Пластик');
 
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-create procedure getAllUsers()
-select *
-from users;
-$
 
-create procedure getAllCategory()
-select *
-from category;
-$
-
-create procedure getAllComment()
-select *
-from comment;
-$
-
-create procedure getAllItem()
-select *
-from item;
-$
-
-create procedure getAllSubCategory()
-select *
-from sub_category;
-$
-
+\\\\\\\\\\\\\\\\\\\\\\\
 
 create procedure createUser(_login varchar(128), _password varchar(128), _email varchar(128))
 insert into users (login, password, email, role_id)
@@ -158,7 +135,11 @@ where u.login = _login;
 
 create procedure allUsers() SELECT * FROM users;
 
+create procedure userByLogin(_login varchar(128))
+SELECT * FROM users where login = _login;
 
+create procedure userById(_id int )
+SELECT * FROM users where id = _id;
 
 
 
@@ -166,11 +147,18 @@ create procedure createProduct(_user_id int, _image varchar(128), _name varchar(
 insert into product (user_id, image, name, description, price, date)
 values (_user_id, _image, _name, _description, _price, _date);
 
-create procedure removeProduct(_product_id int)
-delete from product where id = _product_id;
+create procedure removeProduct(_id int)
+delete from product where id = _id;
+
+
+create procedure productById(_id int)
+select from product where id = _id;
 
 
 create procedure allProduct() SELECT * FROM product;
+
+
+
 
 
 create procedure createItem(_name varchar(128), _image varchar(128), _date date, _description varchar(128), _user_id integer)
@@ -180,7 +168,12 @@ values (_name, _image, _date, _description, _user_id);
 create procedure removeItem(_item_id int)
 delete from item where id = _item_id;
 
-create procedure allItem() SELECT * FROM item;
+create procedure allItem()
+SELECT * FROM item;
+
+create procedure itemById(_id int)
+SELECT * FROM item where id = _id;
+
 
 
 
@@ -190,6 +183,10 @@ values (_user_id, _date, _message, _item_id);
 
 create procedure removeComment(_item_id int)
 delete from comment where id = _comment_id;
+
+
+create procedure commentByUserId(_id int)
+SELECT * FROM comment where user_id = _id;
 
 
 
@@ -207,6 +204,14 @@ create procedure allCategory() SELECT * FROM category;
 create procedure createUserInfo(_name varchar(128), _lastname varchar(128), _phone varchar(64), _image varchar(128),_birthday date)
 insert into user_info (name, lastName, phone, image, birthday)
 values (_name, _lastname, _phone, _image, _birthday);
+
+create procedure userInfoById(_id int )
+SELECT * FROM user_info where id = _id;
+
+create procedure addUserInfoToUser(_login varchar(128), _info_id int)
+UPDATE users SET info_id = _info_id WHERE login = _login;
+
+
 
 
 
