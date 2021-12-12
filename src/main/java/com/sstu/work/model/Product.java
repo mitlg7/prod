@@ -16,6 +16,6 @@ public class Product {
     private Long price;
     private Date date;
     private Category category;
-    private SubCategory subCategory;
+    private Country country;
 
 }

@@ -27,24 +27,23 @@ public class UserInfoRepository {
         this.jdbc = jdbc;
     }
 
-    public Long create(UserInfo userInfo) {
-        List<Long> id = jdbc.query("select * from create_user_info(?,?,?,?,?) as id", mapperId,
+    public void create(UserInfo userInfo) {
+        jdbc.update("call createUserInfo(?,?,?,?,?)",
                 userInfo.getName(),
                 userInfo.getLastName(),
                 userInfo.getPhone(),
                 userInfo.getImage(),
                 userInfo.getBirthday()
         );
-        return id.get(0);
     }
 
 
     public UserInfo getById(Long id) {
         if (id == null)
             return null;
-        var userInfo = jdbc.query("select * from user_info_by_id(?)", mapper, id);
+        var userInfo = jdbc.query("call userInfoById(?)", mapper, id);
         if (userInfo.isEmpty())
-            throw new NotFoundException("UserInfo with id " + id + " not found");
+            return null;
         return userInfo.get(0);
     }
 

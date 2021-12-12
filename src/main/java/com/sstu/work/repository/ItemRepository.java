@@ -30,17 +30,15 @@ public class ItemRepository {
     }
 
     public List<Item> getAll() {
-        String sql = "select * from item;";
-        return jdbc.query(sql, mapper);
+        return jdbc.query("call allItem()", mapper);
     }
 
     public List<Item> getAllByUserId(Long id) {
-        String sql = "select * from item where id =" + id;
-        return jdbc.query(sql, mapper);
+        return jdbc.query("call itemByUserId(?)", mapper, id);
     }
 
     public void create(Item item, Long user_id) {
-        jdbc.update("call create_item(?,?,?,?,?)",
+        jdbc.update("call createItem(?,?,?,?,?)",
                 user_id,
                 item.getName(),
                 item.getImage(),
@@ -49,7 +47,7 @@ public class ItemRepository {
     }
 
     public void delete(Long id){
-        jdbc.update("call remove_item(?)", id);
+        jdbc.update("call removeItem(?)", id);
     }
 
 }

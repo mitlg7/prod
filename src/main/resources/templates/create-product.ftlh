@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="productname">Название продукта </label>
             <input name="name" minlength="5" maxlength="20" type="text" class="form-control" id="productname"
-                   placeholder="Название">
+            placeholder="Название">
         </div>
         <div class="form-group">
             <label for="image" class="form-label">Фото продукта</label>
@@ -17,12 +17,20 @@
         <div class="form-group">
             <label for="description">Описание: </label>
             <input name="description" minlength="5" maxlength="20" type="text" class="form-control" id="description"
-                   placeholder="Описание">
+            placeholder="Описание">
         </div>
         <div class="form-group">
             <label for="price">Цена </label>
             <input name="price" minlength="5" maxlength="20" type="number" min="0" class="form-control" id="price"
                    placeholder="Цена">
+        </div>
+        <div class="form-group">
+            <label for="price">Категория </label>
+            <select class="form-control" name="categoryId" >
+                <#list categories as cat>
+                    <option value="${cat.id}">${cat.type}</option>
+                </#list>
+            </select>
         </div>
 
         <div class="row">

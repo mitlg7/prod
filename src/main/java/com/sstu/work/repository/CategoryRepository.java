@@ -21,18 +21,15 @@ public class CategoryRepository {
     }
 
     public List<Category> allCategories() {
-        return jdbc.query(
-                "select * from category",
-                mapper
-        );
+        return jdbc.query("call allCategory()", mapper);
     }
 
     public void addCategory(String type) {
-        jdbc.update("call create_category(?)", type);
+        jdbc.update("call createCategory(?)", type);
     }
 
     public void removeCategory(String id) {
-        jdbc.update("call remove_category(?)", id);
+        jdbc.update("call removeCategory(?)", id);
     }
 
 }

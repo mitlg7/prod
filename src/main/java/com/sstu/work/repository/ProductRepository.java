@@ -17,6 +17,7 @@ public class ProductRepository {
             .setImage(rs.getString("image"))
             .setDate(rs.getDate("date"))
             .setDescription(rs.getString("description"))
+            .setCountry(rs.getString("description"))
             .setPrice(rs.getLong("price"));
 
     public ProductRepository(JdbcTemplate jdbc) {
@@ -24,30 +25,30 @@ public class ProductRepository {
     }
 
     public List<Product> getProductsByUserId(Long user_id) {
-        String sql = "select * from product where user_id = " + user_id;
-        return jdbc.query(sql, mapper);
+        return jdbc.query("call productByUserId(?)", mapper, user_id);
     }
 
-    public List<Product> getProductByCategory(String type) {
-        String sql = "select * from product where category_id = (" +
-                "select id from category where type =" + type + ")";
-
-        return jdbc.query(sql, mapper);
-
-    }
+//    public List<Product> getProductByCategory(String type) {
+//        String sql = "select * from product where category_id = (" +
+//                "select id from category where type =" + type + ")";
+//
+//        return jdbc.query(sql, mapper);
+//    }
 
     public void createProduct(Product product) {
-        jdbc.update("call create_product(?,?,?,?,?,?)",
+        jdbc.update("call createProduct(?,?,?,?,?,?,?,?)",
                 product.getUserId().intValue(),
                 product.getImage(),
                 product.getName(),
                 product.getDescription(),
                 product.getPrice().intValue(),
-                product.getDate());
+                product.getDate(),
+                product.getCategory().getId(),
+                product.getCountry().getId());
     }
 
-    public List<Product> getAll(){
-        return jdbc.query("select * from all_products()", mapper );
+    public List<Product> getAll() {
+        return jdbc.query("call allProduct()", mapper);
     }
 
 }

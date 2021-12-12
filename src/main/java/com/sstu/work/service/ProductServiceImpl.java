@@ -51,6 +51,7 @@ public class ProductServiceImpl implements  ProductService{
                 .setPrice(Long.valueOf(productRequest.getPrice()))
                 .setImage(imageService.saveImage(productRequest.getImage()))
                 .setUserId(user.getId())
+                .setCategory(new Category().setId((long) Integer.parseInt(productRequest.getCategoryId())))
                 .setDate(new java.sql.Date(utilDate.getTime()));
 
         productRepository.createProduct(product);

@@ -3,7 +3,7 @@ package com.sstu.work.model;
 import lombok.Data;
 
 @Data
-public class SubCategory {
+public class Country {
     private Long id;
-    private String type;
+    private String name;
 }

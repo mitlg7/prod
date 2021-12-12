@@ -60,7 +60,7 @@ create table product
     sub_category_id integer,
     foreign key (user_id) references users (id),
     foreign key (category_id) references category (id),
-    foreign key (sub_category_id) references sub_category (id)
+    foreign key (sub_category_id) references country (id)
 );
 
 create table item

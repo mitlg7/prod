@@ -2,18 +2,18 @@
 
 create database suppliers;
 
+use suppliers;
+
 create table category
 (
     id   integer primary key  auto_increment,
     type varchar(250) unique not null
 );
 
-create table sub_category
+create table country
 (
     id          integer primary key auto_increment,
-    type        varchar(250) unique not null,
-    category_id integer,
-    foreign key (category_id) references category (id)
+    name        varchar(250) unique not null
 );
 
 create table role
@@ -56,10 +56,10 @@ create table product
     date            date,
     price           integer       not null,
     category_id     integer,
-    sub_category_id integer,
+    country_id integer,
     foreign key (user_id) references users (id),
     foreign key (category_id) references category (id),
-    foreign key (sub_category_id) references sub_category (id)
+    foreign key (country_id) references country (id)
 );
 
 create table item
@@ -93,12 +93,21 @@ values ('MODER');
 insert into role (type)
 values ('USER');
 
+insert into country (name)
+values ('Россия');
+insert into country (name)
+values ('Германия');
+insert into country (name)
+values ('Китай');
+insert into country (name)
+values ('Америка');
+
 insert into users (login, password, role_id)
-values ('admin', 'admin', (select id from role where type = 'ADMIN'));
+values ('admin', '$2a$10$hUixmuP1Y0PqLpuqGwlY/.xuO.O1rDY8azyS7cCx05.fD2YRIZ5DO', (select id from role where type = 'ADMIN'));
 insert into users (login, password, role_id)
-values ('moder', 'moder', (select id from role where type = 'MODER'));
+values ('moder', '$2a$10$6ZEtqONqtv7OQ/Sr1ObOz.hLnVrkzqf8Z7baoCJ.vudKMd0OOnc72', (select id from role where type = 'MODER'));
 insert into users (login, password, role_id)
-values ('user', 'user', (select id from role where type = 'USER'));
+values ('user', '$2a$10$AV3Ee0PERL7EqQnCodwGVuju6zJfExvPuHs1DvcdWLs294ZPUMzXy', (select id from role where type = 'USER'));
 
 INSERT INTO category (type)
 values ('Металл');
@@ -108,11 +117,6 @@ INSERT INTO category (type)
 values ('Камень');
 INSERT INTO category (type)
 values ('Пластик');
-
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-
-\\\\\\\\\\\\\\\\\\\\\\\
 
 create procedure createUser(_login varchar(128), _password varchar(128), _email varchar(128))
 insert into users (login, password, email, role_id)
@@ -135,17 +139,26 @@ where u.login = _login;
 
 create procedure allUsers() SELECT * FROM users;
 
+create procedure allCountry() SELECT * FROM country;
+
 create procedure userByLogin(_login varchar(128))
 SELECT * FROM users where login = _login;
+
+create procedure roleById(_id int)
+SELECT *
+FROM role
+where id = _id;
+
+
 
 create procedure userById(_id int )
 SELECT * FROM users where id = _id;
 
 
 
-create procedure createProduct(_user_id int, _image varchar(128), _name varchar(128), _description varchar(256), _price int, _date date)
-insert into product (user_id, image, name, description, price, date)
-values (_user_id, _image, _name, _description, _price, _date);
+create procedure createProduct(_user_id int, _image varchar(128), _name varchar(128), _description varchar(256), _price int, _date date, _cat_id int)
+insert into product (user_id, image, name, description, price, date, category_id)
+values (_user_id, _image, _name, _description, _price, _date, _cat_id);
 
 create procedure removeProduct(_id int)
 delete from product where id = _id;
@@ -153,6 +166,15 @@ delete from product where id = _id;
 
 create procedure productById(_id int)
 select * from product where id = _id;
+
+create procedure productByUserId(_id int)
+select * from product where user_id = _id;
+
+create procedure itemByUserId(_id int)
+select * from item where user_id = _id;
+
+create procedure commentByItemId(_id int)
+select * from comment where item_id = _id;
 
 
 create procedure allProduct() SELECT * FROM product;
@@ -181,7 +203,7 @@ create procedure createComment(_user_id int, _date date, _message varchar(128), 
 insert into comment (user_id,  date, message, item_id)
 values (_user_id, _date, _message, _item_id);
 
-create procedure removeComment(_item_id int)
+create procedure removeComment(_comment_id int)
 delete from comment where id = _comment_id;
 
 

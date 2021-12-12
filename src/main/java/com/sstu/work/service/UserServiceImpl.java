@@ -87,8 +87,7 @@ public class UserServiceImpl implements UserService {
                 .setName(userInfoRequest.getName())
                 .setPhone(userInfoRequest.getPhone())
                 .setImage(imageService.saveImage(userInfoRequest.getImage()));
-
-        Long userInfoId = userInfoRepository.create(userInfo);
+        long userInfoId = 0;//FIXME
         userRepository.addUserInfoIdToUser(login, userInfoId);
     }
 

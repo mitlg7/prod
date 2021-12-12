@@ -29,12 +29,11 @@ public class CommentRepository {
     }
 
     public List<Comment> getAllCommentsByItemId(Long id) {
-        String sql = "select * from comment where item_id = " + id;
-        return jdbc.query(sql, mapper);
+        return jdbc.query("call commentByItemId(?)", mapper, id);
     }
 
     public void createComment(CommentRequest comment, Long item_id) {
-        jdbc.update("call create_comment(?,?,?,?)",
+        jdbc.update("call createComment(?,?,?,?)",
                 comment.getAuthorId(),
                 comment.getDate(),
                 comment.getMessage(),

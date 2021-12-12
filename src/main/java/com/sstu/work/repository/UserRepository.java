@@ -38,20 +38,20 @@ public class UserRepository {
     }
 
     public List<User> getAllUsers() {
-        return jdbc.query("select * from users;",
+        return jdbc.query("call allUsers()",
                 mapper);
     }
 
     public User getUserByLogin(String login) {
 
-        User user = one("select * from USER_BY_LOGIN(?)", login);
+        User user = one("call userByLogin(?)", login);
         if (user == null)
             throw new NotFoundException("User with login" + login + "not found");
         return user;
     }
 
     public User getUserById(Long id) {
-        var user = jdbc.query("select * from USER_BY_ID(?)", mapper, id);
+        var user = jdbc.query("call userById(?)", mapper, id);
         if (user.isEmpty())
             throw new NotFoundException("User with login" + id + "not found");
         return user.get(0);
@@ -83,15 +83,15 @@ public class UserRepository {
     }
 
     public void create(User user) {
-        jdbc.update("call create_user(?,?,?)", user.getLogin(), user.getPassword(), user.getEmail());
+        jdbc.update("call createUser(?,?,?)", user.getLogin(), user.getPassword(), user.getEmail());
     }
 
     public void delete(String login) {
-        jdbc.update("call delete_user(?)", login);
+        jdbc.update("call removeUser(?)", login);
     }
 
     public void addUserInfoIdToUser(String login, Long userInfoId) {
-        jdbc.update("call ADD_USER_INFO_TO_USER(?,?)", login, userInfoId);
+        jdbc.update("call addUserInfoToUser(?,?)", login, userInfoId);
     }
 
 }

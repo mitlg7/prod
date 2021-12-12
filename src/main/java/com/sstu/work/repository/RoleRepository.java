@@ -17,11 +17,12 @@ public class RoleRepository {
         this.jdbc = jdbc;
     }
 
+    /*
     public Role getByType(String type){
-        return jdbc.query("select * from ROLE_BY_TYPE(?)", mapper, type ).get(0);
+        return jdbc.query("call", mapper, type ).get(0);
     }
-
-    public Role getById(Long id){
-        return jdbc.query("select * from ROLE_BY_ID(?)", mapper, id ).get(0);
+*/
+    public Role getById(Long id) {
+        return jdbc.query("call roleById(?)", mapper, id).get(0);
     }
 }
