@@ -17,7 +17,7 @@ public class ProductRepository {
             .setImage(rs.getString("image"))
             .setDate(rs.getDate("date"))
             .setDescription(rs.getString("description"))
-            .setCountry(rs.getString("description"))
+            .setCountry(rs.getString("country"))
             .setPrice(rs.getLong("price"));
 
     public ProductRepository(JdbcTemplate jdbc) {

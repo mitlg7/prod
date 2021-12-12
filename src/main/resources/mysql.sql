@@ -141,6 +141,8 @@ create procedure allUsers() SELECT * FROM users;
 
 create procedure allCountry() SELECT * FROM country;
 
+create procedure allCountry() SELECT * FROM country;
+
 create procedure userByLogin(_login varchar(128))
 SELECT * FROM users where login = _login;
 
@@ -219,8 +221,21 @@ insert into category (type) values (_type);
 create procedure removeCategory(_category_id int)
 delete from category where id = _category_id;
 
+create procedure roleById(_id int)
+SELECT *
+FROM role
+where id = _id;
 
-create procedure allCategory() SELECT * FROM category;
+create procedure countryById(_id int)
+SELECT * FROM country
+where id = _id;
+
+create procedure allCountry()
+SELECT * FROM country;
+
+create procedure getCountyName(_name varchar(128))
+SELECT * FROM country
+where name = _name;
 
 
 create procedure createUserInfo(_name varchar(128), _lastname varchar(128), _phone varchar(64), _image varchar(128),_birthday date)
