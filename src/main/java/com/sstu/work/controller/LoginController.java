@@ -29,16 +29,11 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/register")
-    public String register(@RequestBody RegistrationRequest request){
-        return null;
-    }
-
     @PostMapping("/registration")
-    public ResourceEntry registration(@RequestBody RegistrationRequest request) {
+    public String registration(RegistrationRequest request) {
         request.setPassword(passwordEncoder.encode(request.getPassword()));
         userService.createUser(request);
-        return null;
+        return "redirect:/user/info";
     }
     @GetMapping("/registration")
     public String registration(Model model) {

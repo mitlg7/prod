@@ -1,7 +1,6 @@
 package com.sstu.work.repository;
 
 import com.sstu.work.model.Country;
-import com.sstu.work.model.Role;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;

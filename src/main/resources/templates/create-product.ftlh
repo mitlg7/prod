@@ -32,6 +32,14 @@
                 </#list>
             </select>
         </div>
+        <div class="form-group">
+            <label for="price">Страна производства: </label>
+            <select class="form-control" name="countryId" >
+                <#list countries as country>
+                    <option value="${country.id}">${country.name}</option>
+                </#list>
+            </select>
+        </div>
 
         <div class="row">
             <button type="submit" class="mx-auto col-8 btn btn-secondary mt-5 ">Добавить продукт</button>

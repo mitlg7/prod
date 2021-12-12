@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
-        return null;
+        return userRepository.getUserById(id);
     }
 
     @Override
@@ -87,8 +87,9 @@ public class UserServiceImpl implements UserService {
                 .setName(userInfoRequest.getName())
                 .setPhone(userInfoRequest.getPhone())
                 .setImage(imageService.saveImage(userInfoRequest.getImage()));
-        long userInfoId = 0;//FIXME
-        userRepository.addUserInfoIdToUser(login, userInfoId);
+
+        userInfoRepository.create(userInfo);
+        userRepository.addUserInfoIdToUser(login);
     }
 
 }

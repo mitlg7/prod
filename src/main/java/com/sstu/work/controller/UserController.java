@@ -39,21 +39,26 @@ public class UserController {
 
 
 
-    @GetMapping("/user-info")
+    @GetMapping("/info")
     public String AddUserInfoForm(Model model) {
         return "create-user-info";
     }
 
     @GetMapping("/{id}")
-    public String getUserByID(@AuthenticationPrincipal User user, @PathVariable String id, Model model) {
-        return null;
+    public String getUserByID(@AuthenticationPrincipal Principal principal, @PathVariable String id, Model model) {
+        User user = userService.getUserById(Long.parseLong(id));
+        model.addAttribute("user",user);
+        model.addAttribute("userInfo",user.getInfo());
+        return "user";
     }
     //////////////////////////////
 
-    @PostMapping("/user-info")
+    @PostMapping("/info")
     public String addUserInfo(Principal principal, UserInfoRequest userInfoRequest) {
+        User user = userService.getUserByUsername(principal.getName());
         userService.addUserInfo(userInfoRequest, principal.getName());
-        return "redirect:/user";
+
+        return "redirect:/user/"+user.getId();
     }
 
     @DeleteMapping("/{id}")

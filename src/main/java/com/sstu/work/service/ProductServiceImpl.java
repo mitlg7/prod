@@ -1,6 +1,7 @@
 package com.sstu.work.service;
 
 import com.sstu.work.model.Category;
+import com.sstu.work.model.Country;
 import com.sstu.work.model.Product;
 import com.sstu.work.model.User;
 import com.sstu.work.model.utils.ProductRequest;
@@ -28,7 +29,7 @@ public class ProductServiceImpl implements  ProductService{
 
     @Override
     public Product getProductById(String id) {
-        return null;
+        return productRepository.get(Long.parseLong(id));
     }
 
     @Override
@@ -52,6 +53,7 @@ public class ProductServiceImpl implements  ProductService{
                 .setImage(imageService.saveImage(productRequest.getImage()))
                 .setUserId(user.getId())
                 .setCategory(new Category().setId((long) Integer.parseInt(productRequest.getCategoryId())))
+                .setCountry(new Country().setId((long) Integer.parseInt(productRequest.getCountryId())))
                 .setDate(new java.sql.Date(utilDate.getTime()));
 
         productRepository.createProduct(product);

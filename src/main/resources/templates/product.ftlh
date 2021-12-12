@@ -4,7 +4,7 @@
 <@component.skeleton title="Страница продукта">
     <@bootstrap.navbar/>
     <div class="container">
-        Страница продукта
+        ${product.toString()}
     </div>
 
 </@component.skeleton>

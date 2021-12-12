@@ -3,14 +3,14 @@
 
 <@component.skeleton title="Главная страница">
     <@bootstrap.navbar/>
-    <form method="post" action="/user/registration" class="container col-4 mt-5">
+    <form method="post" action="/registration" class="container col-4 mt-5">
         <div class="form-group">
             <label for="login">Логин: </label>
             <input name="login" minlength="5"  maxlength="20" type="text" class="form-control" id="login" placeholder="Логин">
         </div>
         <div class="form-group">
             <label for="email">Почта: </label>
-            <input name="email" type="email"  class="form-control" id="email" placeholder="Емаил">
+            <input name="email" type="text"  class="form-control" id="email" placeholder="Емаил">
         </div>
         <div class="form-group">
             <label for="password">Пароль: </label>

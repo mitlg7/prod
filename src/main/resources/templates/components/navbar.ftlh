@@ -17,7 +17,7 @@
                         <a class="nav-link text-white" href="/registration">Регистрация</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/user/user-info">Добавить информацию о user</a>
+                        <a class="nav-link text-white" href="/user/info">Добавить информацию о user</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/user">ЛК</a>

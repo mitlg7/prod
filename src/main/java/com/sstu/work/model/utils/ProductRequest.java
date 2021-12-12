@@ -9,5 +9,6 @@ public class ProductRequest {
     String description;
     String price;
     String categoryId;
+    String countryId;
     MultipartFile image;
 }

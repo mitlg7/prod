@@ -24,6 +24,10 @@ public class CategoryRepository {
         return jdbc.query("call allCategory()", mapper);
     }
 
+    public Category get(int id) {
+        return jdbc.query("call categoryById(?)", mapper, id).get(0);
+    }
+
     public void addCategory(String type) {
         jdbc.update("call createCategory(?)", type);
     }

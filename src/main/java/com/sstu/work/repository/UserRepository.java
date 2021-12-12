@@ -90,8 +90,8 @@ public class UserRepository {
         jdbc.update("call removeUser(?)", login);
     }
 
-    public void addUserInfoIdToUser(String login, Long userInfoId) {
-        jdbc.update("call addUserInfoToUser(?,?)", login, userInfoId);
+    public void addUserInfoIdToUser(String login) {
+        jdbc.update("call addUserInfoToUser(?)", login);
     }
 
 }

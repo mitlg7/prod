@@ -1,6 +1,7 @@
 package com.sstu.work.repository;
 
 import com.sstu.work.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,11 @@ import java.util.List;
 
 @Repository
 public class ProductRepository {
+    @Autowired
+    CountryRepository countryRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
+
     final JdbcTemplate jdbc;
 
     RowMapper<Product> mapper = (rs, rowNum) -> new Product()
@@ -17,7 +23,8 @@ public class ProductRepository {
             .setImage(rs.getString("image"))
             .setDate(rs.getDate("date"))
             .setDescription(rs.getString("description"))
-            .setCountry(rs.getString("country"))
+            .setCountry(countryRepository.getById(rs.getInt("country_id")))
+            .setCategory(categoryRepository.get(rs.getInt("category_id")))
             .setPrice(rs.getLong("price"));
 
     public ProductRepository(JdbcTemplate jdbc) {
@@ -26,6 +33,9 @@ public class ProductRepository {
 
     public List<Product> getProductsByUserId(Long user_id) {
         return jdbc.query("call productByUserId(?)", mapper, user_id);
+    }
+    public Product get(Long id) {
+        return jdbc.query("call productById(?)", mapper, id).get(0);
     }
 
 //    public List<Product> getProductByCategory(String type) {

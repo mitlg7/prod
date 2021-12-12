@@ -2,6 +2,7 @@ package com.sstu.work.controller;
 
 import com.sstu.work.model.utils.ProductRequest;
 import com.sstu.work.service.CategoryService;
+import com.sstu.work.service.CountryService;
 import com.sstu.work.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,17 +20,20 @@ public class ProductController {
 
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    CountryService countryService;
 
     @GetMapping("/create")
     public String addProduct(Model model) {
         model.addAttribute("categories", categoryService.getAll());
+        model.addAttribute("countries", countryService.getAll());
         return "create-product";
     }
 
     // FORMS
     @GetMapping("/{id}")
     public String getProduct(Model model, @PathVariable String id) {
-        model.addAttribute(productService.getProductById(id));
+        model.addAttribute("product",productService.getProductById(id));
         return "product";
     }
 

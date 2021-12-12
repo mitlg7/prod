@@ -151,6 +151,11 @@ SELECT *
 FROM role
 where id = _id;
 
+create procedure categoryById(_id int)
+SELECT *
+FROM category
+where id = _id;
+
 
 
 create procedure userById(_id int )
@@ -158,9 +163,9 @@ SELECT * FROM users where id = _id;
 
 
 
-create procedure createProduct(_user_id int, _image varchar(128), _name varchar(128), _description varchar(256), _price int, _date date, _cat_id int)
-insert into product (user_id, image, name, description, price, date, category_id)
-values (_user_id, _image, _name, _description, _price, _date, _cat_id);
+create procedure createProduct(_user_id int, _image varchar(128), _name varchar(128), _description varchar(256), _price int, _date date, _cat_id int, _cntr int)
+insert into product (user_id, image, name, description, price, date, category_id, country_id)
+values (_user_id, _image, _name, _description, _price, _date, _cat_id, _cntr);
 
 create procedure removeProduct(_id int)
 delete from product where id = _id;
@@ -245,8 +250,8 @@ values (_name, _lastname, _phone, _image, _birthday);
 create procedure userInfoById(_id int )
 SELECT * FROM user_info where id = _id;
 
-create procedure addUserInfoToUser(_login varchar(128), _info_id int)
-UPDATE users SET info_id = _info_id WHERE login = _login;
+create procedure addUserInfoToUser(_login varchar(128))
+UPDATE users SET info_id = @@IDENTITY   WHERE login = _login;
 
 
 
