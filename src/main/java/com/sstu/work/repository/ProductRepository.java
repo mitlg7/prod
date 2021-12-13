@@ -14,6 +14,8 @@ public class ProductRepository {
     CountryRepository countryRepository;
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    UserRepository userRepository;
 
     final JdbcTemplate jdbc;
 
@@ -23,6 +25,7 @@ public class ProductRepository {
             .setImage(rs.getString("image"))
             .setDate(rs.getDate("date"))
             .setDescription(rs.getString("description"))
+            .setUserId(rs.getLong("user_id"))
             .setCountry(countryRepository.getById(rs.getInt("country_id")))
             .setCategory(categoryRepository.get(rs.getInt("category_id")))
             .setPrice(rs.getLong("price"));

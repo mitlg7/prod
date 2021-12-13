@@ -3,170 +3,131 @@
 
 <@component.skeleton title="Главная страница">
     <@bootstrap.navbar/>
+    <div class="container row" id="ads">
+        <div class="heading">
+            <h3 class="heading__title">Продукты, которые представлены на нашем сайте</h3>
+        </div>
 
-    <div class="heading">
-        <h1 class="heading__title">Продукты, которые представлены на нашем сайте</h1>
-    </div>
+        <div class="main-container">
+            <div class="cards row">
+                <#list products as product>
+                    <div class="col-md-4 mt-4">
+                        <div class="card rounded">
+                            <div class="card-image">
+                                <span class="card-notify-badge">${product.category.type}</span>
+                                <span class="card-notify-year">${product.country.name}</span>
+                                <img class="img-fluid" src="/img/${product.image}" alt=""/>
+                            </div>
+                            <div class="card-image-overlay m-auto">
+                                <span class="card-detail-badge">Used</span>
+                                <span class="card-detail-badge">$28,000.00</span>
+                                <span class="card-detail-badge">13000 Kms</span>
+                            </div>
+                            <a href="/user/${product.userId}" class="btn btn-warning mt-3">Перейти к поставщику</a>
 
-    <div class="main-container">
-        <div class="cards">
-            <#list products as product>
-                <div class="card card-1">
-                    <div class="card__icon"><i class="fas fa-bolt"></i></div>
-                    <p class="card__exit"><i class="fas fa-times"></i></p>
-                    <h2 class="card__title">${product.name}</h2>
-                    <p>
-                    <h2 class="card__title">${product.description}</h2>
-                    </p>
-                    <p class="card__apply">
-                        <a class="card__link" href="#">Подробнее <i class="fas fa-arrow-right"></i></a>
-                    </p>
-                </div>
-            </#list>
+                        </div>
+                    </div>
+
+                </#list>
+            </div>
         </div>
     </div>
 
-
-
-
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+
+        /* Category Ads */
+
+        #ads {
+            margin: 30px 0 30px 0;
+
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-            Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-        }
-
-        .main-container {
-            padding: 30px;
-        }
-
-        /* HEADING */
-
-        .heading {
-            text-align: center;
-        }
-
-        .heading__title {
-            font-weight: 600;
-        }
-
-        .heading__credits {
-            margin: 10px 0px;
-            color: #888888;
-            font-size: 25px;
-            transition: all 0.5s;
-        }
-
-        .heading__link {
-            text-decoration: none;
-        }
-
-        .heading__credits .heading__link {
-            color: inherit;
-        }
-
-        /* CARDS */
-
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .card {
-            margin: 20px;
-            padding: 20px;
-            width: 500px;
-            min-height: 200px;
-            display: grid;
-            grid-template-rows: 20px 50px 1fr 50px;
-            border-radius: 10px;
-            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
-            transition: all 0.2s;
-        }
-
-        .card:hover {
-            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-            transform: scale(1.01);
-        }
-
-        .card__link,
-        .card__exit,
-        .card__icon {
-            position: relative;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .card__link::after {
+        #ads .card-notify-badge {
             position: absolute;
-            top: 25px;
-            left: 0;
-            content: "";
-            width: 0%;
-            height: 3px;
-            background-color: rgba(255, 255, 255, 0.6);
-            transition: all 0.5s;
+            left: -10px;
+            top: -20px;
+            background: #f2d900;
+            text-align: center;
+            border-radius: 30px 30px 30px 30px;
+            color: #000;
+            padding: 5px 10px;
+            font-size: 14px;
+
         }
 
-        .card__link:hover::after {
-            width: 100%;
+        #ads .card-notify-year {
+            position: absolute;
+            right: -10px;
+            top: -20px;
+            background: #ff4444;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            width: 75px;
+            height: 50px;
+            padding: 15px 0 0 0;
         }
 
-        .card__exit {
-            grid-row: 1/2;
-            justify-self: end;
+
+        #ads .card-detail-badge {
+            background: #f2d900;
+            text-align: center;
+            border-radius: 30px 30px 30px 30px;
+            color: #000;
+            padding: 5px 10px;
+            font-size: 14px;
         }
 
-        .card__icon {
-            grid-row: 2/3;
-            font-size: 30px;
+
+        #ads .card:hover {
+            background: #fff;
+            box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
+            border-radius: 4px;
+            transition: all 0.3s ease;
         }
 
-        .card__title {
-            grid-row: 2/4;
-            font-weight: 400;
-            color: #ffffff;
+        #ads .card-image-overlay {
+            font-size: 20px;
+
         }
 
-        .card__apply {
-            grid-row: 4/5;
-            align-self: center;
+
+        #ads .card-image-overlay span {
+            display: inline-block;
         }
 
-        /* CARD BACKGROUNDS */
 
-        .card-1 {
-            background: radial-gradient(#1fe4f5, #3fbafe);
+        #ads .ad-btn {
+            text-transform: uppercase;
+            width: 150px;
+            height: 40px;
+            border-radius: 80px;
+            font-size: 16px;
+            line-height: 35px;
+            text-align: center;
+            border: 3px solid #e6de08;
+            display: block;
+            text-decoration: none;
+            margin: 20px auto 1px auto;
+            color: #000;
+            overflow: hidden;
+            position: relative;
+            background-color: #e6de08;
         }
 
-        .card-2 {
-            background: radial-gradient(#fbc1cc, #fa99b2);
+        #ads .ad-btn:hover {
+            background-color: #e6de08;
+            color: #1e1717;
+            border: 2px solid #e6de08;
+            background: transparent;
+            transition: all 0.3s ease;
+            box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
         }
 
-        .card-3 {
-            background: radial-gradient(#76b2fe, #b69efe);
-        }
-
-        .card-4 {
-            background: radial-gradient(#60efbc, #58d5c9);
-        }
-
-        .card-5 {
-            background: radial-gradient(#f588d8, #c0a3e5);
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width: 1600px) {
-            .cards {
-                justify-content: center;
-            }
+        #ads .ad-title h5 {
+            text-transform: uppercase;
+            font-size: 18px;
         }
     </style>
 </@component.skeleton>

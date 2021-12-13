@@ -72,26 +72,29 @@
         <p class="fs-4 row">Продукты этого поставщика:</p><br>
         <#if products??>
             <#list products as product>
-                <div class="col-md-4">
-                    <div class="card rounded">
-                        <div class="card-image">
+                <div class="card mb-3 m-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-5">
                             <span class="card-notify-badge">${product.category.type}</span>
                             <span class="card-notify-year">${product.country.name}</span>
-                            <img class="img-fluid" src="/img/${product.image}" alt=""/>
+                            <img
+                                    src="/img/${product.image}"
+                                    alt=""
+                                    class="img-fluid rounded-start"
+                            />
                         </div>
-                        <div class="card-image-overlay m-auto">
-                            <span class="card-detail-badge">Used</span>
-                            <span class="card-detail-badge">$28,000.00</span>
-                            <span class="card-detail-badge">13000 Kms</span>
-                        </div>
-                        <div class="card-body text-center">
-                            <div class="ad-title m-auto">
-                                <h5>Honda
-                                    <Acc></Acc>
-                                    ord LX
-                                </h5>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">
+                                    ${product.description}
+                                </p>
+
+                                <span class="card-detail-badge">${product.price} руб.</span><br>
+                                <p class="card-text">
+                                    <small class="text-muted">${product.date}</small>
+                                </p>
                             </div>
-                            <a class="ad-btn" href="#">View</a>
                         </div>
                     </div>
                 </div>
