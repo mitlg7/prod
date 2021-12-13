@@ -13,5 +13,5 @@ public class UserInfo {
     private String lastName;
     private String phone;
     private Date birthday;
-    private String image;
+    private String image = "avatar.jpg";
 }

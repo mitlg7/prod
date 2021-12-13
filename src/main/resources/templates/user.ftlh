@@ -11,10 +11,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="/img/${user.info.image}" alt="Admin"
-                                         class="rounded-circle" width="150">
+                                    <#if user.info??>
+                                        <img src="/img/${user.info.image}" alt="Admin"
+                                             class="rounded-circle" width="150">
+                                        <#else>
+                                            <img src="/img/avatar.jpg" alt="Admin"
+                                                 class="rounded-circle" width="150">
+                                    </#if>
                                     <div class="mt-3">
-                                        <h4>${user.info.name}</h4>
+                                        <h4>${user.login}</h4>
                                         <p class="text-secondary mb-1">${user.role.type}</p>
                                         <p class="text-muted font-size-sm">Саратов, Октябрьский район</p>
                                     </div>
@@ -31,7 +36,9 @@
                                     <h6 class="mb-0">Полное имя</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
+                                    <#if user.info??>
                                     ${user.info.name} ${user.info.lastName}
+                                    </#if>
                                 </div>
                             </div>
                             <hr>
@@ -49,7 +56,9 @@
                                     <h6 class="mb-0">Телефон</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
+                                    <#if user.info??>
                                     ${user.info.phone}
+                                    </#if>
                                 </div>
                             </div>
                             <hr>
@@ -58,7 +67,9 @@
                                     <h6 class="mb-0">День рождения</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
+                                    <#if user.info??>
                                     ${user.info.birthday}
+                                    </#if>
                                 </div>
                             </div>
                             <hr>

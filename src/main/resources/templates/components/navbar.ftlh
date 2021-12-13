@@ -22,15 +22,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/product/create">Добавить продукт</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Войти</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/registration">Регистрация</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user">ЛК</a>
-                </li>
+
+                <#if known??>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user">ЛК  ${name}</a>
+                    </li>
+                <#else>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Войти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/registration">Регистрация</a>
+                    </li>
+
+                </#if>
 
             </ul>
         </div>
