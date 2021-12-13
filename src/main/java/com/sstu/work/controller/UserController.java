@@ -49,6 +49,7 @@ public class UserController {
         User user = userService.getUserById(Long.parseLong(id));
         model.addAttribute("user",user);
         model.addAttribute("userInfo",user.getInfo());
+        model.addAttribute("products", productService.getProductsByUserId(user.getId()));
         return "user";
     }
     //////////////////////////////

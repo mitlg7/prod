@@ -13,6 +13,7 @@ public interface ProductService {
     List<Product> getAllProducts();
 
     List<Product> getProductsByType(Category category);
+    List<Product> getProductsByUserId(Long id);
 
     void createProduct(String login, ProductRequest productRequest);
 

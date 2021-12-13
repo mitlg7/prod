@@ -43,6 +43,11 @@ public class ProductServiceImpl implements  ProductService{
     }
 
     @Override
+    public List<Product> getProductsByUserId(Long id) {
+        return productRepository.getProductsByUserId(id);
+    }
+
+    @Override
     public void createProduct(String login, ProductRequest productRequest) {
         User user = userService.getUserByUsername(login);
         Date utilDate = new Date();
