@@ -13,18 +13,17 @@
                 <#list products as product>
                     <div class="col-md-4 mt-4">
                         <div class="card rounded">
-                            <div class="card-image">
+                            <div class="card-image-overlay m-auto">
                                 <span class="card-notify-badge">${product.category.type}</span>
                                 <span class="card-notify-year">${product.country.name}</span>
-                                <img class="img-fluid" src="/img/${product.image}" alt=""/>
+                                <img class="img-fluid" width="150"  src="/img/${product.image}" alt=""/>
                             </div>
                             <div class="card-image-overlay m-auto">
-                                <span class="card-detail-badge">Used</span>
-                                <span class="card-detail-badge">$28,000.00</span>
-                                <span class="card-detail-badge">13000 Kms</span>
+                                <span class="card-detail-badge">Название: ${product.name}</span>
+                                <span class="card-detail-badge">Цена $${product.price}</span>
                             </div>
                             <a href="/user/${product.userId}" class="btn btn-warning mt-3">Перейти к поставщику</a>
-                            <a href="/product/${product.id}" class="btn btn-warning mt-3">Перейти к продукту</a>
+                            <a href="/product/${product.id}" class="btn btn-warning mt-1">Перейти к продукту</a>
 
                         </div>
                     </div>

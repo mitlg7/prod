@@ -14,8 +14,8 @@
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
 
-                                        <img src="/img/${product.image}" alt=""
-                                             class="rounded-circle" width="150">
+                                    <img src="/img/${product.image}" alt=""
+                                         class="rounded-circle" width="150">
 
                                     <div class="mt-3">
                                         <h4>${product.name}</h4>
@@ -67,40 +67,36 @@
             </div>
         </div>
 
-
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Цена</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-                <#if product.id??>
-                    ${product.price}
-                </#if>
-            </div>
-        </div>
-
         <form class="container m-4 row " method="post" action="/product/${product.id}/comment">
-
             <div class="row">
-                 <div class="col-sm-9 text-secondary">
-                    <input type="text" class="col-10" name="comment" placeholder="Введите комментарий">
-                    <button class="btn btn-warning col-4" >
-                        Добавить
-                    </button>
+                <div class="col-sm-9 ">
+                    <input type="text" class="col-12" name="comment" placeholder="Введите комментарий">
+                    <div class="text-right">
+                        <button class="btn btn-warning col-md-2 ">
+                            Добавить
+                        </button>
+                    </div>
                 </div>
             </div>
-
         </form>
 
         <#if comments??>
 
-        <div class="container">
-            <#list comments as comm>
-                <div class="container col-8">
-                    ${comm.toString()}
-                </div>
-            </#list>
-        </div>
+            <div class="container">
+                <#list comments as comm>
+
+                    <div class="container1 justify-content-center mt-5 border-left border-right">
+                        <div class="d-flex justify-content-center py-2">
+                            <div class="second py-2 px-2"> <span class="text1">${comm.message}</span>
+                                <div class="d-flex justify-content-between py-1 pt-2">
+                                    <#--<div><img src="https://i.imgur.com/AgAC1Is.jpg" width="18">--><span class="text2">${comm.author.info.name}</span></div>
+                                    <div><span class="text3">${comm.date}</span><span class="text4"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </#list>
+            </div>
         </#if>
     </div>
 
@@ -200,5 +196,53 @@
             text-transform: uppercase;
             font-size: 18px;
         }
+
+        body {
+            background-color: #fff
+        }
+
+        .container1 {
+            background-color: #eef2f5;
+            width: 400px
+        }
+
+        .form-control: focus {
+            color: #000
+        }
+
+        .second {
+            width: 350px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 10px 10px 5px #aaaaaa
+        }
+
+        .text1 {
+            font-size: 13px;
+            font-weight: 500;
+            color: #56575b
+        }
+
+        .text2 {
+            font-size: 13px;
+            font-weight: 500;
+            margin-left: 6px;
+            color: #56575b
+        }
+
+        .text3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin-right: 4px;
+            color: #828386
+        }
+
+        .text4 {
+            font-size: 13px;
+            font-weight: 500;
+            color: #828386
+        }
+
+
     </style>
 </@component.skeleton>
