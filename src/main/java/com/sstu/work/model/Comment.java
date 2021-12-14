@@ -12,5 +12,6 @@ public class Comment {
     private Date date;
     private User author;
     private String message;
+    private int productId;
 
 }

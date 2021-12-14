@@ -24,6 +24,7 @@
                                 <span class="card-detail-badge">13000 Kms</span>
                             </div>
                             <a href="/user/${product.userId}" class="btn btn-warning mt-3">Перейти к поставщику</a>
+                            <a href="/product/${product.id}" class="btn btn-warning mt-3">Перейти к продукту</a>
 
                         </div>
                     </div>

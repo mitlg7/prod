@@ -23,7 +23,8 @@
                     <a class="nav-link" href="/product/create">Добавить продукт</a>
                 </li>
 
-                <#if known??>
+
+                <#if name??>
                     <li class="nav-item">
                         <a class="nav-link" href="/user">ЛК  ${name}</a>
                     </li>

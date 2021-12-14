@@ -1,9 +1,8 @@
 package com.sstu.work.controller;
 
+import com.sstu.work.model.User;
 import com.sstu.work.model.utils.ProductRequest;
-import com.sstu.work.service.CategoryService;
-import com.sstu.work.service.CountryService;
-import com.sstu.work.service.ProductService;
+import com.sstu.work.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +13,11 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    CommentService commentService;
 
     @Autowired
     ProductService productService;
@@ -34,7 +38,15 @@ public class ProductController {
     @GetMapping("/{id}")
     public String getProduct(Model model, @PathVariable String id) {
         model.addAttribute("product",productService.getProductById(id));
+        model.addAttribute("comments", commentService.getCommentByProduct(id));
         return "product";
+    }
+
+    @PostMapping("/{id}/comment")
+    public String createComment( Principal principal, @PathVariable String id, String comment) {
+        User user = userService.getUserByUsername(principal.getName());
+        commentService.create(user,id, comment);
+        return "redirect:/product/" + id ;
     }
 
     @GetMapping("/all")

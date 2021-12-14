@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
             <label for="description">Описание: </label>
-            <input name="description" minlength="5" maxlength="20" type="text" class="form-control" id="description"
+            <input name="description" minlength="5" maxlength="250" type="text" class="form-control" id="description"
             placeholder="Описание">
         </div>
         <div class="form-group">

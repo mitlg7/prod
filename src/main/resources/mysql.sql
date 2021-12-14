@@ -62,16 +62,6 @@ create table product
     foreign key (country_id) references country (id)
 );
 
-create table item
-(
-    id          integer primary key auto_increment,
-    name        varchar(250) not null,
-    image       varchar(512),
-    date        date,
-    description varchar(4096),
-    user_id     integer,
-    foreign key (user_id) references users (id)
-);
 
 
 create table comment
@@ -80,9 +70,9 @@ create table comment
     date    date    not null,
     user_id integer not null,
     message varchar(4096),
-    item_id integer,
+    product_id  integer,
     foreign key (user_id) references users (id),
-    foreign key (item_id) references item (id)
+    foreign key (product_id) references product (id)
 
 );
 
@@ -141,7 +131,6 @@ create procedure allUsers() SELECT * FROM users;
 
 create procedure allCountry() SELECT * FROM country;
 
-create procedure allCountry() SELECT * FROM country;
 
 create procedure userByLogin(_login varchar(128))
 SELECT * FROM users where login = _login;
@@ -180,35 +169,18 @@ select * from product where user_id = _id;
 create procedure itemByUserId(_id int)
 select * from item where user_id = _id;
 
-create procedure commentByItemId(_id int)
-select * from comment where item_id = _id;
 
 
 create procedure allProduct() SELECT * FROM product;
 
+create procedure allCategory() SELECT * FROM category;
 
 
 
 
-create procedure createItem(_name varchar(128), _image varchar(128), _date date, _description varchar(128), _user_id integer)
-insert into item (name, image, date, description, user_id)
-values (_name, _image, _date, _description, _user_id);
-
-create procedure removeItem(_item_id int)
-delete from item where id = _item_id;
-
-create procedure allItem()
-SELECT * FROM item;
-
-create procedure itemById(_id int)
-SELECT * FROM item where id = _id;
-
-
-
-
-create procedure createComment(_user_id int, _date date, _message varchar(128), _item_id int)
-insert into comment (user_id,  date, message, item_id)
-values (_user_id, _date, _message, _item_id);
+create procedure createComment(_user_id int, _date date, _message varchar(128), _product_id int)
+insert into comment (user_id,  date, message, product_id )
+values (_user_id, _date, _message, _product_id);
 
 create procedure removeComment(_comment_id int)
 delete from comment where id = _comment_id;
@@ -216,6 +188,11 @@ delete from comment where id = _comment_id;
 
 create procedure commentByUserId(_id int)
 SELECT * FROM comment where user_id = _id;
+
+create procedure commentByProductId(_product_id int)
+SELECT * FROM comment where product_id = _product_id;
+
+
 
 
 
@@ -235,8 +212,7 @@ create procedure countryById(_id int)
 SELECT * FROM country
 where id = _id;
 
-create procedure allCountry()
-SELECT * FROM country;
+
 
 create procedure getCountyName(_name varchar(128))
 SELECT * FROM country

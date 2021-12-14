@@ -22,22 +22,23 @@ public class CommentRepository {
                     .setId(rs.getLong("id"))
                     .setDate(rs.getDate("date"))
                     .setMessage(rs.getString("message"))
-                    .setAuthor(userRepository.getUserById(rs.getLong("user_id")));
+                    .setAuthor(userRepository.getUserById(rs.getLong("user_id")))
+                    .setProductId(rs.getInt("product_id"));
 
     public CommentRepository(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
     }
 
-    public List<Comment> getAllCommentsByItemId(Long id) {
-        return jdbc.query("call commentByItemId(?)", mapper, id);
+    public List<Comment> getCommentsByProductId(int id) {
+        return jdbc.query("call commentByProductId(?)", mapper, id);
     }
 
-    public void createComment(CommentRequest comment, Long item_id) {
+    public void createComment(Comment comment) {
         jdbc.update("call createComment(?,?,?,?)",
-                comment.getAuthorId(),
+                comment.getAuthor().getId(),
                 comment.getDate(),
                 comment.getMessage(),
-                item_id
+                comment.getProductId()
         );
 
     }
