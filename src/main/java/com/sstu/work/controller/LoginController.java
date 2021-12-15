@@ -33,7 +33,7 @@ public class LoginController {
     public String registration(RegistrationRequest request) {
         request.setPassword(passwordEncoder.encode(request.getPassword()));
         userService.createUser(request);
-        return "redirect:/user/info";
+        return "redirect:/login";
     }
     @GetMapping("/registration")
     public String registration(Model model) {

@@ -1,6 +1,6 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
-
+<#include "components/security.ftlh">
 <@component.skeleton title="Страница пользователя">
     <@bootstrap.navbar/>
     <div class="container">
@@ -14,9 +14,9 @@
                                     <#if user.info??>
                                         <img src="/img/${user.info.image}" alt="Admin"
                                              class="rounded-circle" width="150">
-                                        <#else>
-                                            <img src="/img/avatar.jpg" alt="Admin"
-                                                 class="rounded-circle" width="150">
+                                    <#else>
+                                        <img src="/img/avatar.jpg" alt="Admin"
+                                             class="rounded-circle" width="150">
                                     </#if>
                                     <div class="mt-3">
                                         <h4>${user.login}</h4>
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <#if user.info??>
-                                    ${user.info.name} ${user.info.lastName}
+                                        ${user.info.name} ${user.info.lastName}
                                     </#if>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <#if user.info??>
-                                    ${user.info.phone}
+                                        ${user.info.phone}
                                     </#if>
                                 </div>
                             </div>
@@ -68,10 +68,25 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <#if user.info??>
-                                    ${user.info.birthday}
+                                        ${user.info.birthday}
                                     </#if>
                                 </div>
                             </div>
+                            <#if known?? && user.login == name >
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0"></h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+
+                                        <a href="/user/info" class="btn btn-warning">Изменить информацию о
+                                            пользователе</a>
+
+
+                                    </div>
+                                </div>
+                            </#if>
                             <hr>
                         </div>
                     </div>

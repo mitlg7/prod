@@ -24,9 +24,12 @@
                 </li>
 
 
-                <#if name??>
+                <#if known>
                     <li class="nav-item">
                         <a class="nav-link" href="/user">ЛК  ${name}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Выйти</a>
                     </li>
                 <#else>
                     <li class="nav-item">
@@ -43,6 +46,13 @@
 
     </nav>
     <style>
+        .card-image img{
+                            object-fit: scale-down; /* Do not scale the image */
+                            object-position: center; /* Center the image within the element */
+                            width: 100%;
+                            height: 150px;
+
+        }
         .topnav a:hover {
             border-bottom: 3px solid red;
         }

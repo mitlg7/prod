@@ -38,6 +38,11 @@ public class ProductServiceImpl implements  ProductService{
     }
 
     @Override
+    public List<Product> searchProducts(String search) {
+        return productRepository.search(search);
+    }
+
+    @Override
     public List<Product> getProductsByType(Category category) {
         return null;
     }

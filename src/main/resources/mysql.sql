@@ -222,6 +222,8 @@ SELECT * FROM user_info where id = _id;
 create procedure addUserInfoToUser(_login varchar(128))
 UPDATE users SET info_id = @@IDENTITY   WHERE login = _login;
 
+create procedure searchProducts(s varchar(128))
+select * from product where name like concat('%',s,'%') ;
 
 
 
