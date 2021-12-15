@@ -4,7 +4,7 @@
 <@component.skeleton title="Главная страница">
     <@bootstrap.navbar/>
 
-    <form class="container col-8" method="post" enctype="multipart/form-data" >
+    <form class="container col-8" method="post" enctype="multipart/form-data"  accept="image/*">
         <div class="form-group">
             <label for="productname">Название продукта </label>
             <input name="name" minlength="5" maxlength="20" type="text" class="form-control" id="productname"
@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <label for="price">Цена </label>
-            <input name="price" minlength="5" maxlength="20" type="number" min="0" class="form-control" id="price"
+            <input name="price"  type="number" min="0" class="form-control" id="price"
                    placeholder="Цена">
         </div>
         <div class="form-group">

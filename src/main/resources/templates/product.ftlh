@@ -61,7 +61,7 @@
                                 </#if>
                             </div>
                         </div>
-                        <#if known>
+                        <#if known && user?? &&( name == "admin" || name == "moder" || user.id == product.userId)>
                             <hr>
                             <form method="post" action="/product/delete">
                                 <div class="row-left">
@@ -98,7 +98,7 @@
 
     <#if comments??>
 
-        <div class="container">
+        <div class="container d-flex justify-content-center">
         <#list comments as comm>
 
             <div class="container justify-content-center mt-5  border-right">
@@ -228,7 +228,7 @@
         }
 
         .second {
-            width: 350px;
+            width: 600px;
             background-color: white;
             border-radius: 4px;
             box-shadow: 10px 10px 5px #aaaaaa

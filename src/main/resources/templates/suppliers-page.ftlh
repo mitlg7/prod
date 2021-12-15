@@ -10,26 +10,29 @@
                     <div class="card-sl">
                         <#if user.info??>
                             <div class="card-image">
-                                <img class="img-thumbnail"  src="/img/${user.info.image}">
+                                <img class="img-thumbnail" src="/img/${user.info.image}">
                             </div>
-                            <#else >
-                                <div class="card-image">
+                        <#else >
+                            <div class="card-image">
 
-                                    <img class="img-thumbnail" src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"/>
-                                </div>
+                                <img class="img-thumbnail"
+                                     src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"/>
+                            </div>
                         </#if>
 
 
                         <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
                         <div class="card-heading">
-                            Audi Q8
+                            <#if user.info??>
+                                ${user.info.name}
+                            </#if>
                         </div>
                         <div class="card-text">
                             Логин: ${user.login}
                         </div>
                         <div class="card-text">
                             <#if user.info??>
-                               Телефон: ${user.info.phone}
+                                Телефон: ${user.info.phone}
                             </#if>
                         </div>
 

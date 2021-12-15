@@ -30,6 +30,7 @@ public class UserController {
     //FIXME
     @GetMapping
     public String user(Principal principal, Model model) {
+        System.out.println(principal.getClass().getName().toString());
         User user = userService.getUserByUsername(principal.getName());
         if(user.getInfo()!= null)
             model.addAttribute("userInfo", user.getInfo());

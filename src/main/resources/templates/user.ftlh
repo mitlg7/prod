@@ -119,7 +119,8 @@
                                     ${product.description}
                                 </p>
 
-                                <span class="card-detail-badge">${product.price} руб.</span><br>
+                                <span class="card-detail-badge">${product.price} руб.</span>
+                                <a class="mx-4 card-detail-badge" href="/product/${product.id}">Перейти</a><br>
                                 <p class="card-text">
                                     <small class="text-muted">${product.date}</small>
                                 </p>
