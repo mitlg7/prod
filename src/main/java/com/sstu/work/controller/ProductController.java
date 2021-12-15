@@ -49,6 +49,12 @@ public class ProductController {
         return "redirect:/product/" + id ;
     }
 
+    @PostMapping("/delete")
+    public String removeProduct(Long id) {
+        productService.removeProduct(id);
+        return "redirect:/";
+    }
+
     @GetMapping("/all")
     public String getAllProduct(@RequestParam(required = false) String user) {
         if (user != null) {

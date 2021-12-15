@@ -61,6 +61,16 @@
                                 </div>
                             </div>
                             <hr>
+                            <form method="post"  action="/product/delete">
+                                <div class="row-left">
+                                    <input hidden="" name="id" value="${product.id}">
+                                    <button class="btn btn-warning col-md-2 ">
+                                        Удалить
+                                    </button>
+                                </div>
+                            </form>
+
+                            <hr>
                         </div>
                     </div>
                 </div>

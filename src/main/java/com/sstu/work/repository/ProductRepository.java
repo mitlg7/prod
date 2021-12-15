@@ -60,6 +60,11 @@ public class ProductRepository {
                 product.getCountry().getId());
     }
 
+    public void removeProduct(Long id){
+        jdbc.update("call removeProduct(?)",
+                id);
+    }
+
     public List<Product> getAll() {
         return jdbc.query("call allProduct()", mapper);
     }

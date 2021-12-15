@@ -17,6 +17,7 @@ public interface ProductService {
 
     void createProduct(String login, ProductRequest productRequest);
 
+    void removeProduct(Long id);
 
 
     boolean removeById(String id);
