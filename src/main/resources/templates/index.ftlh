@@ -16,7 +16,7 @@
                             <div class="card-image-overlay m-auto">
                                 <span class="card-notify-badge">${product.category.type}</span>
                                 <span class="card-notify-year">${product.country.name}</span>
-                                <img class="img-fluid" width="150"  src="/img/${product.image}" alt=""/>
+                                <img width="250" src="/img/${product.image}" alt=""/>
                             </div>
                             <div class="card-image-overlay m-auto">
                                 <span class="card-detail-badge">Название: ${product.name}</span>
@@ -88,7 +88,7 @@
         }
 
         #ads .card-image-overlay {
-            font-size: 20px;
+            font-size: 40px;
 
         }
 
@@ -98,32 +98,6 @@
         }
 
 
-        #ads .ad-btn {
-            text-transform: uppercase;
-            width: 150px;
-            height: 40px;
-            border-radius: 80px;
-            font-size: 16px;
-            line-height: 35px;
-            text-align: center;
-            border: 3px solid #e6de08;
-            display: block;
-            text-decoration: none;
-            margin: 20px auto 1px auto;
-            color: #000;
-            overflow: hidden;
-            position: relative;
-            background-color: #e6de08;
-        }
-
-        #ads .ad-btn:hover {
-            background-color: #e6de08;
-            color: #1e1717;
-            border: 2px solid #e6de08;
-            background: transparent;
-            transition: all 0.3s ease;
-            box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
-        }
 
         #ads .ad-title h5 {
             text-transform: uppercase;

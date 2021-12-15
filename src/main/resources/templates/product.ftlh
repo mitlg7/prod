@@ -85,7 +85,7 @@
             <div class="container">
                 <#list comments as comm>
 
-                    <div class="container1 justify-content-center mt-5 border-left border-right">
+                    <div class="container justify-content-center mt-5  border-right">
                         <div class="d-flex justify-content-center py-2">
                             <div class="second py-2 px-2"> <span class="text1">${comm.message}</span>
                                 <div class="d-flex justify-content-between py-1 pt-2">

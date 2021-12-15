@@ -25,11 +25,11 @@
                             Audi Q8
                         </div>
                         <div class="card-text">
-                            ${user.login}
+                            Логин: ${user.login}
                         </div>
                         <div class="card-text">
                             <#if user.info??>
-                                ${user.info.phone}
+                               Телефон: ${user.info.phone}
                             </#if>
                         </div>
 

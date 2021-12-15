@@ -152,7 +152,7 @@ SELECT * FROM users where id = _id;
 
 
 
-create procedure createProduct(_user_id int, _image varchar(128), _name varchar(128), _description varchar(256), _price int, _date date, _cat_id int, _cntr int)
+create procedure createProduct(_user_id int, _image varchar(128), _name varchar(128), _description varchar(4096), _price int, _date date, _cat_id int, _cntr int)
 insert into product (user_id, image, name, description, price, date, category_id, country_id)
 values (_user_id, _image, _name, _description, _price, _date, _cat_id, _cntr);
 
@@ -166,10 +166,6 @@ select * from product where id = _id;
 create procedure productByUserId(_id int)
 select * from product where user_id = _id;
 
-create procedure itemByUserId(_id int)
-select * from item where user_id = _id;
-
-
 
 create procedure allProduct() SELECT * FROM product;
 
@@ -178,7 +174,7 @@ create procedure allCategory() SELECT * FROM category;
 
 
 
-create procedure createComment(_user_id int, _date date, _message varchar(128), _product_id int)
+create procedure createComment(_user_id int, _date date, _message varchar(4096), _product_id int)
 insert into comment (user_id,  date, message, product_id )
 values (_user_id, _date, _message, _product_id);
 
@@ -203,10 +199,7 @@ insert into category (type) values (_type);
 create procedure removeCategory(_category_id int)
 delete from category where id = _category_id;
 
-create procedure roleById(_id int)
-SELECT *
-FROM role
-where id = _id;
+
 
 create procedure countryById(_id int)
 SELECT * FROM country
