@@ -25,6 +25,7 @@ public class UserRepository {
             .setLogin(rs.getString("login"))
             .setEmail(rs.getString("email"))
             .setPassword(rs.getString("password"))
+            .setToken(rs.getString("token"))
             .setRole(roleRepository.getById(rs.getLong("role_id")))
             .setInfo(userInfoRepository.getById(rs.getLong("info_id")));
 
@@ -57,33 +58,12 @@ public class UserRepository {
         return user.get(0);
     }
 
-    public List<User> getUsersByModerRole() {
-        String sql = "select * from users " +
-                "where role_id = " +
-                "(select id from role " +
-                "where type = 'MODER')";
-        return jdbc.query(sql, mapper);
-    }
-
-    public List<User> getUsersByAdminRole() {
-        String sql = "select * from users " +
-                "where role_id = " +
-                "(select id from role " +
-                "where type = 'ADMIN')";
-        return jdbc.query(sql, mapper);
-    }
-
-
-    public List<User> getUsersByUserRole() {
-        String sql = "select * from users " +
-                "where role_id = " +
-                "(select id from role " +
-                "where type = 'USER')";
-        return jdbc.query(sql, mapper);
-    }
-
     public void create(User user) {
-        jdbc.update("call createUser(?,?,?)", user.getLogin(), user.getPassword(), user.getEmail());
+        jdbc.update("call createUser(?,?,?,?)", user.getLogin(), user.getPassword(), user.getEmail(), user.getToken());
+    }
+
+    public void deleteToken(String login){
+        jdbc.update("call deleteToken(?)", login);
     }
 
     public void delete(String login) {

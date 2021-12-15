@@ -75,13 +75,12 @@
                             <#if known?? && user.login == name >
                                 <hr>
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-3">
                                         <h6 class="mb-0"></h6>
                                     </div>
-                                    <div class="col-sm-9 text-secondary">
+                                    <div class="col-9 text-secondary">
 
-                                        <a href="/user/info" class="btn btn-warning">Изменить информацию о
-                                            пользователе</a>
+                                        <a href="/user/info" class="btn btn-warning">Изменить</a>
 
 
                                     </div>
@@ -94,8 +93,12 @@
             </div>
         </div>
     </div>
-    <div class="container row" id="ads">
-        <p class="fs-4 row">Продукты этого поставщика:</p><br>
+    <div class="container row " id="ads">
+        <#if known?? && user.login == name >
+            <p class="fs-4 m-4">Ваши продукты:</p><br>
+        <#else >
+            <p class="fs-4 m-4">Продукты этого поставщика:</p><br>
+        </#if>
         <#if products??>
             <#list products as product>
                 <div class="card mb-3 m-3" style="max-width: 540px;">

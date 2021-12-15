@@ -34,6 +34,8 @@ public class UserController {
         if(user.getInfo()!= null)
             model.addAttribute("userInfo", user.getInfo());
         model.addAttribute("user", user);
+        model.addAttribute("products", productService.getProductsByUserId(user.getId()));
+
         return "user";
     }
 

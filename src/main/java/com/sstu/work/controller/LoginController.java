@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
@@ -21,11 +22,10 @@ public class LoginController {
     PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
-    public String login(Model model){
-
-        System.out.println(passwordEncoder.encode("admin"));
-        System.out.println(passwordEncoder.encode("moder"));
-        System.out.println(passwordEncoder.encode("user"));
+    public String login(Model model, @RequestParam(required = false) String error){
+        if(error != null){
+            model.addAttribute("error", true);
+        }
         return "login";
     }
 
@@ -33,10 +33,26 @@ public class LoginController {
     public String registration(RegistrationRequest request) {
         request.setPassword(passwordEncoder.encode(request.getPassword()));
         userService.createUser(request);
-        return "redirect:/login";
+        return "redirect:/check";
     }
+
+
     @GetMapping("/registration")
     public String registration(Model model) {
         return "registration";
+    }
+
+    @GetMapping("/check")
+    public String check(Model model, @RequestParam(required = false) String token) {
+        if(token == null)
+            System.out.println("");
+        else {
+            if(userService.checkToken(token))
+                model.addAttribute("check", true);
+            else
+                model.addAttribute("check", false);
+            return null;
+        }
+        return "check";
     }
 }

@@ -29,6 +29,5 @@ public interface UserService {
 
     void addUserInfo(UserInfoRequest userInfoRequest, String login);
 
-
-
+    boolean checkToken(String token);
 }
