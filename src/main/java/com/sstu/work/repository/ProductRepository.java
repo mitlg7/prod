@@ -64,4 +64,8 @@ public class ProductRepository {
         return jdbc.query("call allProduct()", mapper);
     }
 
+    public List<Product> search(String search){
+        return jdbc.query("call searchProducts(?)", mapper, search);
+    }
+
 }

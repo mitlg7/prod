@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     CategoryRepository categoryRepository;
 
-    // FORMS
+    //FIXME
     @GetMapping
     public String user(Principal principal, Model model) {
         User user = userService.getUserByUsername(principal.getName());

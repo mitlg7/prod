@@ -3,6 +3,7 @@
 
 <@component.skeleton title="Главная страница">
     <@bootstrap.navbar/>
+
     <form method="post" action="/registration" class="container col-4 mt-5">
         <div class="form-group">
             <label for="login">Логин: </label>
