@@ -1,67 +1,69 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 
+<#include "components/security.ftlh">
 <@component.skeleton title="Страница продукта">
     <@bootstrap.navbar/>
 
 
     <div class="container">
-        <div class="container mt-4">
-            <div class="row">
-                <div class="col-4 gutters-sm">
-                    <div class="mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-column align-items-center text-center">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-4 gutters-sm">
+                <div class="mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
 
-                                    <img src="/img/${product.image}" alt=""
-                                         class="rounded-circle" width="150">
+                                <img src="/img/${product.image}" alt=""
+                                     class="rounded-circle" width="150">
 
-                                    <div class="mt-3">
-                                        <h4>${product.name}</h4>
-                                    </div>
+                                <div class="mt-3">
+                                    <h4>${product.name}</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-7">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Подробная информация</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <#if product.id??>
-                                        ${product.description}
-                                    </#if>
-                                </div>
+            </div>
+            <div class="col-7">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Подробная информация</h6>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Цена</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <#if product.id??>
-                                        ${product.price}
-                                    </#if>
-                                </div>
+                            <div class="col-sm-9 text-secondary">
+                                <#if product.id??>
+                                    ${product.description}
+                                </#if>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Дата побликации</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <#if product.id??>
-                                        ${product.date}
-                                    </#if>
-                                </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Цена</h6>
                             </div>
+                            <div class="col-sm-9 text-secondary">
+                                <#if product.id??>
+                                    ${product.price}
+                                </#if>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Дата побликации</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <#if product.id??>
+                                    ${product.date}
+                                </#if>
+                            </div>
+                        </div>
+                        <#if known>
                             <hr>
-                            <form method="post"  action="/product/delete">
+                            <form method="post" action="/product/delete">
                                 <div class="row-left">
                                     <input hidden="" name="id" value="${product.id}">
                                     <button class="btn btn-warning col-md-2 ">
@@ -70,13 +72,15 @@
                                 </div>
                             </form>
 
-                            <hr>
-                        </div>
+                        </#if>
+
+                        <hr>
                     </div>
                 </div>
             </div>
         </div>
-
+    </div>
+    <#if known>
         <form class="container m-4 row " method="post" action="/product/${product.id}/comment">
             <div class="row">
                 <div class="col-sm-9 ">
@@ -89,25 +93,28 @@
                 </div>
             </div>
         </form>
+    </#if>
 
-        <#if comments??>
 
-            <div class="container">
-                <#list comments as comm>
+    <#if comments??>
 
-                    <div class="container justify-content-center mt-5  border-right">
-                        <div class="d-flex justify-content-center py-2">
-                            <div class="second py-2 px-2"> <span class="text1">${comm.message}</span>
-                                <div class="d-flex justify-content-between py-1 pt-2">
-                                    <#--<div><img src="https://i.imgur.com/AgAC1Is.jpg" width="18">--><span class="text2">${comm.author.info.name}</span></div>
-                                    <div><span class="text3">${comm.date}</span><span class="text4"></span></div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="container">
+        <#list comments as comm>
+
+            <div class="container justify-content-center mt-5  border-right">
+                <div class="d-flex justify-content-center py-2">
+                    <div class="second py-2 px-2"><span class="text1">${comm.message}</span>
+                        <div class="d-flex justify-content-between py-1 pt-2">
+                            <#--<div><img src="https://i.imgur.com/AgAC1Is.jpg" width="18">--><span
+                                    class="text2">${comm.author.info.name}</span></div>
+                        <div><span class="text3">${comm.date}</span><span class="text4"></span></div>
                     </div>
-                </#list>
+                </div>
             </div>
-        </#if>
+            </div>
+        </#list>
+        </div>
+    </#if>
     </div>
 
     <style>

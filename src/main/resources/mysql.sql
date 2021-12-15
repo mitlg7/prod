@@ -71,7 +71,7 @@ create table comment
     message    varchar(4096),
     product_id integer,
     foreign key (user_id) references users (id),
-    foreign key (product_id) references product (id)
+    foreign key (product_id) references product (id) on  DELETE cascade
 
 );
 

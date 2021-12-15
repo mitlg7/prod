@@ -72,7 +72,7 @@
                                     </#if>
                                 </div>
                             </div>
-                            <#if known?? && user.login == name >
+                            <#if known && user.login == name >
                                 <hr>
                                 <div class="row">
                                     <div class="col-3">
@@ -94,7 +94,7 @@
         </div>
     </div>
     <div class="container row " id="ads">
-        <#if known?? && user.login == name >
+        <#if known && user.login == name >
             <p class="fs-4 m-4">Ваши продукты:</p><br>
         <#else >
             <p class="fs-4 m-4">Продукты этого поставщика:</p><br>
