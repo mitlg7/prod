@@ -23,6 +23,9 @@
                             </#list>
                         </select>
                     </#if>
+                    <p class="btn">Цена</p>
+                    <input class="form-control mx-2" min="0" id="min" placeholder="Минимум" name="min">
+                    <input class="form-control mx-2" type="number" id="" placeholder="Максимум" max="9999999" name="max">
 
                     <input type="search" name="search" class="form-control rounded" placeholder="Search"
                            aria-label="Search"

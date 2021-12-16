@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,13 +25,15 @@ public class MainController {
     @GetMapping
     public String a(Principal user, Model model,
                     @RequestParam(required = false) String search,
+                    @RequestParam(required = false) String min,
+                    @RequestParam(required = false) String max,
                     @RequestParam(required = false) String cat) {
         if (search == null && cat == null) {
             model.addAttribute("products", productService.getAllProducts());
         } else {
             List<Product> products = productService.getAllProducts();
 
-            if(search != null){
+            if (search != null) {
                 products = productService.searchProducts(search);
                 if (!CollectionUtils.isEmpty(products)) {
                     ;
@@ -40,9 +43,14 @@ public class MainController {
                 model.addAttribute("search", search);
             }
             if (cat != null) {
-                model.addAttribute("catId",Long.parseLong( cat));
+                model.addAttribute("catId", Long.parseLong(cat));
                 products = products.stream().filter(product -> product.getCategory().getId().equals(Long.parseLong(cat))).collect(Collectors.toList());
             }
+            if (!ObjectUtils.isEmpty(max))
+                products = products.stream().filter(product -> product.getPrice() < Long.parseLong(max)).collect(Collectors.toList());
+
+            if (!ObjectUtils.isEmpty(min))
+                products = products.stream().filter(product -> product.getPrice() > Long.parseLong(min)).collect(Collectors.toList());
             model.addAttribute("products", products);
             model.addAttribute("search", search);
 
