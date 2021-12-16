@@ -146,7 +146,7 @@
             position: absolute;
             left: -10px;
             top: -20px;
-            background: #f2d900;
+            background: #dba7ef;
             text-align: center;
             border-radius: 30px 30px 30px 30px;
             color: #000;
@@ -159,19 +159,19 @@
             position: absolute;
             right: -10px;
             top: -20px;
-            background: #ff4444;
+            background: #78c291;
             border-radius: 50%;
             text-align: center;
             color: #fff;
             font-size: 14px;
-            width: 50px;
+            width: 75px;
             height: 50px;
             padding: 15px 0 0 0;
         }
 
 
         #ads .card-detail-badge {
-            background: #f2d900;
+            background: #70beea;
             text-align: center;
             border-radius: 30px 30px 30px 30px;
             color: #000;
@@ -188,7 +188,7 @@
         }
 
         #ads .card-image-overlay {
-            font-size: 20px;
+            font-size: 40px;
 
         }
 
@@ -197,33 +197,6 @@
             display: inline-block;
         }
 
-
-        #ads .ad-btn {
-            text-transform: uppercase;
-            width: 150px;
-            height: 40px;
-            border-radius: 80px;
-            font-size: 16px;
-            line-height: 35px;
-            text-align: center;
-            border: 3px solid #e6de08;
-            display: block;
-            text-decoration: none;
-            margin: 20px auto 1px auto;
-            color: #000;
-            overflow: hidden;
-            position: relative;
-            background-color: #e6de08;
-        }
-
-        #ads .ad-btn:hover {
-            background-color: #e6de08;
-            color: #1e1717;
-            border: 2px solid #e6de08;
-            background: transparent;
-            transition: all 0.3s ease;
-            box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
-        }
 
         #ads .ad-title h5 {
             text-transform: uppercase;

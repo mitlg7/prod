@@ -8,6 +8,22 @@
             <div class="row">
                 <h3 class="">Продукты, которые представлены на нашем сайте:</h3>
                 <form method="get" class="input-group">
+                    <#if cats??>
+                        <select class="form-control " name="cat">
+                            <#list cats as cat>
+                                <#if catId??>
+                                    <#if catId==cat.id>
+                                        <option selected value="${cat.id}">${cat.type}</option>
+                                    </#if >
+
+                                <#else >
+                                    <option value="${cat.id}">${cat.type}</option>
+                                </#if>
+
+                            </#list>
+                        </select>
+                    </#if>
+
                     <input type="search" name="search" class="form-control rounded" placeholder="Search"
                            aria-label="Search"
                            aria-describedby="search-addon" <#if search??> value="${search}" </#if>/>
@@ -66,7 +82,7 @@
                 position: absolute;
                 left: -10px;
                 top: -20px;
-                background: #f2d900;
+                background: #dba7ef;
                 text-align: center;
                 border-radius: 30px 30px 30px 30px;
                 color: #000;
@@ -79,7 +95,7 @@
                 position: absolute;
                 right: -10px;
                 top: -20px;
-                background: #ff4444;
+                background: #78c291;
                 border-radius: 50%;
                 text-align: center;
                 color: #fff;
@@ -91,7 +107,7 @@
 
 
             #ads .card-detail-badge {
-                background: #f2d900;
+                background: #70beea;
                 text-align: center;
                 border-radius: 30px 30px 30px 30px;
                 color: #000;
