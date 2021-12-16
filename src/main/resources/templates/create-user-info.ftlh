@@ -7,11 +7,11 @@
         <div class="row g-3">
             <div class="col">
                 <label for="name" class="form-label">Имя</label>
-                <input name="name" id="name" type="text" class="form-control" placeholder="Имя" aria-label="Имя">
+                <input name="name" id="name" type="text" class="form-control" maxlength="30" placeholder="Имя" aria-label="Имя">
             </div>
             <div class="col">
                 <label for="lastname" class="form-label">Фамилия</label>
-                <input name="lastname" id="lastname" type="text" class="form-control" placeholder="Фамилия"
+                <input name="lastname" id="lastname" type="text" class="form-control" maxlength="30" placeholder="Фамилия"
                        aria-label="Фамилия">
             </div>
         </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="col">
                 <label for="birthday" class="form-label">Дата рождения</label>
-                <input name="birthday" id="birthday" type="date" class="form-control" placeholder="Дата рождения">
+                <input name="birthday" id="birthday" type="date" max="2021-12-21"  min="1900-12-21"  class="form-control" placeholder="Дата рождения">
             </div>
         </div>
         <div class="row">

@@ -11,7 +11,7 @@
                 <form class="container col-8 mt-4" action="/check" method="get">
                     <div class="form-group">
                         <label for=" fs-4 mb-3">Токен пришедший вам на почту: </label>
-                        <input name="token" type="text" class="form-control" id="token" placeholder="Токен">
+                        <input name="token" type="text" maxlength="100" class="form-control" id="token" placeholder="Токен">
                     </div>
 
                     <div class="row">
@@ -23,7 +23,7 @@
             <form class="container col-8 mt-4" action="/check" method="get">
                 <div class="form-group">
                     <label for=" fs-4 mb-3">Токен пришедший вам на почту: </label>
-                    <input name="token" type="text" class="form-control" id="token" placeholder="Токен">
+                    <input name="token" type="email" class="form-control" id="token" placeholder="Токен">
                 </div>
 
                 <div class="row">

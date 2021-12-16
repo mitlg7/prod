@@ -11,12 +11,12 @@
         </#if>
         <div class="form-group">
             <label for="username">Логин: </label>
-            <input name="username" minlength="4" maxlength="20" type="text" class="form-control" id="username"
+            <input name="username" minlength="4" maxlength="32" type="text" class="form-control" id="username"
                    placeholder="Логин">
         </div>
         <div class="form-group">
             <label for="password">Пароль: </label>
-            <input name="password" minlength="4" maxlength="20" type="password" class="form-control" id="password"
+            <input name="password" minlength="4" maxlength="32" type="password" class="form-control" id="password"
                    placeholder="Пароль">
         </div>
         <div class="row">
